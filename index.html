@@ -441,6 +441,8 @@
                 <input type="text" placeholder="Image URL (optional)">
                 <label for="contentBackground${sectionCount}">Background Color:</label>
                 <input type="color" id="contentBackground${sectionCount}" name="contentBackground${sectionCount}">
+                <input type="color" id="sectionBackground${sectionCount}" name="sectionBackground${sectionCount}">
+                <label for="sectionFontColor${sectionCount}">Font Color:</label>
                 <label for="contentFont${sectionCount}">Font Family:</label>
                 <select id="contentFont${sectionCount}" name="contentFont${sectionCount}">
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
@@ -792,7 +794,7 @@
                 const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
                 const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
                 htmlContent += `
-                    <section style="background-color: ${sectionBackground}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
+                    <section style="background-color: ${sectionBackground}; font-color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
                         <h2>${sectionTitle}</h2>
                 `;
                 const contentItems = section.querySelectorAll('.content-item');
@@ -805,7 +807,7 @@
                     const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
                     const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                        <div class="content" style="background-color: ${contentBackground}; font-color: ${sectionFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
@@ -845,7 +847,7 @@
                 const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
                 const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
                 htmlContent += `
-                    <section style="background-color: ${sectionBackground}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
+                    <section style="background-color: ${sectionBackground}; font-color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
                         <h2>${sectionTitle}</h2>
                 `;
                 const contentItems = section.querySelectorAll('.content-item');
@@ -858,7 +860,7 @@
                     const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
                     const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                        <div class="content" style="background-color: ${contentBackground}; font-color: ${sectionFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
