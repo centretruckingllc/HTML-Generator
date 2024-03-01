@@ -412,9 +412,11 @@
 </select>
 
                 <label for="sectionFontSize${sectionCount}">Font Size:</label>
-                <input type="number" id="sectionFontSize${sectionCount}" name="sectionFontSize${sectionCount}" min="10" max="48" value="14">
+                <input type="number" id="sectionFontSize${sectionCount}" name="sectionFontSize${sectionCount}" min="8" max="200" value="14">
                 <label for="sectionMargin${sectionCount}">Margin:</label>
                 <input type="number" id="sectionMargin${sectionCount}" name="sectionMargin${sectionCount}" min="0" value="0">
+                <label for="centerMargin${sectionCount}">Center Margin:</label>
+                <input type="checkbox" id="centerMargin${sectionCount}" name="centerMargin${sectionCount}">
                 <button type="button" onclick="deleteSection(this)">Delete Section</button>
                 <div class="content-container"></div>
                 <button type="button" onclick="addContent(this)">Add Content</button>
