@@ -441,8 +441,8 @@
                 <input type="text" placeholder="Image URL (optional)">
                 <label for="contentBackground${sectionCount}">Background Color:</label>
                 <input type="color" id="contentBackground${sectionCount}" name="contentBackground${sectionCount}">
-                <input type="color" id="sectionBackground${sectionCount}" name="sectionBackground${sectionCount}">
-                <label for="sectionFontColor${sectionCount}">Font Color:</label>
+                <label for="contentFontColor${sectionCount}">Font Color:</label>
+                <input type="color" id="contentFontColor${sectionCount}" name="contentFontColor${sectionCount}">
                 <label for="contentFont${sectionCount}">Font Family:</label>
                 <select id="contentFont${sectionCount}" name="contentFont${sectionCount}">
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
@@ -790,6 +790,7 @@
             sections.forEach((section, index) => {
                 const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
                 const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
+                const contentFontColor = sectionItem.querySelector(`#sectionFontColor${index + 1}`).value;
                 const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
                 const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
                 const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
@@ -803,11 +804,12 @@
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
                     const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}`).value;
+                    const contentFontColor = contentItem.querySelector(`#contentFontColor${index + 1}`).value;
                     const contentFont = contentItem.querySelector(`#contentFont${index + 1}`).value;
                     const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
                     const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-color: ${sectionFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                        <div class="content" style="background-color: ${contentBackground}; font-color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
@@ -843,6 +845,7 @@
             sections.forEach((section, index) => {
                 const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
                 const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
+                const contentFontColor = section.querySelector(`#sectionFontColor${index + 1}`).value;
                 const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
                 const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
                 const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
@@ -856,11 +859,12 @@
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
                     const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}`).value;
+                    const contentFontColor = contentItem.querySelector(`#contentFontColor${index + 1}`).value;
                     const contentFont = contentItem.querySelector(`#contentFont${index + 1}`).value;
                     const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
                     const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-color: ${sectionFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                        <div class="content" style="background-color: ${contentBackground}; font-color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
