@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complex HTML Generator</title>
+    <style>
+        /* Some basic styling for better appearance */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .section {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .content-item {
+            margin-bottom: 5px;
+        }
+        .content-item input[type="text"],
+        .content-item textarea {
+            width: calc(100% - 70px);
+            margin-right: 5px;
+        }
+        .content-item button {
+            margin-left: 5px;
+        }
+        .nested-section {
+            margin-left: 20px;
+        }
+        .iframe-container {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        iframe {
+            width: 100%;
+            height: 400px;
+        }
+        .image-container {
+            margin-bottom: 10px;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 200px;
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Complex HTML Generator</h1>
+    <form id="htmlForm">
+        <label for="title">Title of HTML document:</label>
+        <input type="text" id="title" name="title" required>
+        <div id="sectionsContainer"></div>
+        <button type="button" onclick="addSection()">Add Section</button>
+    </form>
+
+    <div class="iframe-container">
+        <h2>Live Preview</h2>
+        <iframe id="livePreview"></iframe>
+    </div>
+
+    <button id="copyCode">Copy Code</button>
+
+    <script>
+        let sectionCount = 1;
+
+        function addSection() {
+            const sectionsContainer = document.getElementById('sectionsContainer');
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'section';
+            sectionDiv.innerHTML = `
+                <hr>
+                <label for="sectionTitle${sectionCount}">Title of Section ${sectionCount}:</label>
+                <input type="text" id="sectionTitle${sectionCount}" name="sectionTitle${sectionCount}" required>
+                <label for="sectionBackground${sectionCount}">Background Color:</label>
+                <input type="color" id="sectionBackground${sectionCount}" name="sectionBackground${sectionCount}">
+                <label for="sectionFont${sectionCount}">Font Family:</label>
+                <select id="sectionFont${sectionCount}" name="sectionFont${sectionCount}">
+                    <option value="Arial, sans-serif">Arial, sans-serif</option>
+<option value="Times New Roman, serif">Times New Roman, serif</option>
+<option value="Courier New, monospace">Courier New, monospace</option>
+<option value="Helvetica, sans-serif">Helvetica, sans-serif</option>
+<option value="Georgia, serif">Georgia, serif</option>
+<option value="Verdana, sans-serif">Verdana, sans-serif</option>
+<option value="Tahoma, sans-serif">Tahoma, sans-serif</option>
+<option value="Palatino, serif">Palatino, serif</option>
+<option value="Garamond, serif">Garamond, serif</option>
+<option value="Book Antiqua, serif">Book Antiqua, serif</option>
+<option value="Trebuchet MS, sans-serif">Trebuchet MS, sans-serif</option>
+<option value="Arial Black, sans-serif">Arial Black, sans-serif</option>
+<option value="Impact, sans-serif">Impact, sans-serif</option>
+<option value="Lucida Sans Unicode, sans-serif">Lucida Sans Unicode, sans-serif</option>
+<option value="Lucida Grande, sans-serif">Lucida Grande, sans-serif</option>
+<option value="Century Gothic, sans-serif">Century Gothic, sans-serif</option>
+<option value="Geneva, sans-serif">Geneva, sans-serif</option>
+<option value="Optima, sans-serif">Optima, sans-serif</option>
+<option value="Gill Sans, sans-serif">Gill Sans, sans-serif</option>
+<option value="Arial Narrow, sans-serif">Arial Narrow, sans-serif</option>
+<option value="Futura, sans-serif">Futura, sans-serif</option>
+<option value="Copperplate, sans-serif">Copperplate, sans-serif</option>
+<option value="Arial Rounded MT Bold, sans-serif">Arial Rounded MT Bold, sans-serif</option>
+<option value="Franklin Gothic Medium, sans-serif">Franklin Gothic Medium, sans-serif</option>
+<option value="Avantgarde, sans-serif">Avantgarde, sans-serif</option>
+<option value="Rockwell, serif">Rockwell, serif</option>
+<option value="Baskerville, serif">Baskerville, serif</option>
+<option value="Century Schoolbook, serif">Century Schoolbook, serif</option>
+<option value="Andale Mono, monospace">Andale Mono, monospace</option>
+<option value="Courier, monospace">Courier, monospace</option>
+<option value="Lucida Console, monospace">Lucida Console, monospace</option>
+<option value="Monaco, monospace">Monaco, monospace</option>
+<option value="Consolas, monospace">Consolas, monospace</option>
+<option value="Lucida Sans Typewriter, monospace">Lucida Sans Typewriter, monospace</option>
+<option value="DejaVu Sans Mono, monospace">DejaVu Sans Mono, monospace</option>
+<option value="Inconsolata, monospace">Inconsolata, monospace</option>
+<option value="Source Code Pro, monospace">Source Code Pro, monospace</option>
+<option value="Anonymous Pro, monospace">Anonymous Pro, monospace</option>
+<option value="Menlo, monospace">Menlo, monospace</option>
+<option value="PT Mono, monospace">PT Mono, monospace</option>
+<option value="Roboto Mono, monospace">Roboto Mono, monospace</option>
+<option value="IBM Plex Mono, monospace">IBM Plex Mono, monospace</option>
+<option value="Hack, monospace">Hack, monospace</option>
+<option value="Courier Prime, monospace">Courier Prime, monospace</option>
+<option value="Ubuntu Mono, monospace">Ubuntu Mono, monospace</option>
+<option value="Fira Mono, monospace">Fira Mono, monospace</option>
+<option value="Monofur, monospace">Monofur, monospace</option>
+<option value="Droid Sans Mono, monospace">Droid Sans Mono, monospace</option>
+<option value="Liberation Mono, monospace">Liberation Mono, monospace</option>
+<option value="Anonymous, monospace">Anonymous, monospace</option>
+<option value="Space Mono, monospace">Space Mono, monospace</option>
+<option value="JetBrains Mono, monospace">JetBrains Mono, monospace</option>
+<option value="Hackney, monospace">Hackney, monospace</option>
+<option value="Cascadia Code, monospace">Cascadia Code, monospace</option>
+<option value="Hackman, monospace">Hackman, monospace</option>
+<option value="iosevka, monospace">iosevka, monospace</option>
+<option value="Share Tech Mono, monospace">Share Tech Mono, monospace</option>
+<option value="PT Sans, sans-serif">PT Sans, sans-serif</option>
+<option value="Open Sans, sans-serif">Open Sans, sans-serif</option>
+<option value="Lato, sans-serif">Lato, sans-serif</option>
+<option value="Roboto, sans-serif">Roboto, sans-serif</option>
+<option value="Montserrat, sans-serif">Montserrat, sans-serif</option>
+<option value="Raleway, sans-serif">Raleway, sans-serif</option>
+<option value="Noto Sans, sans-serif">Noto Sans, sans-serif</option>
+<option value="Roboto Condensed, sans-serif">Roboto Condensed, sans-serif</option>
+<option value="Oswald, sans-serif">Oswald, sans-serif</option>
+<option value="Ubuntu, sans-serif">Ubuntu, sans-serif</option>
+<option value="PT Serif, serif">PT Serif, serif</option>
+<option value="Merriweather, serif">Merriweather, serif</option>
+<option value="Playfair Display, serif">Playfair Display, serif</option>
+<option value="Source Serif Pro, serif">Source Serif Pro, serif</option>
+<option value="Crimson Text, serif">Crimson Text, serif</option>
+<option value="Libre Baskerville, serif">Libre Baskerville, serif</option>
+<option value="EB Garamond, serif">EB Garamond, serif</option>
+<option value="Arvo, serif">Arvo, serif</option>
+<option value="Bitter, serif">Bitter, serif</option>
+<option value="PT Sans Caption, sans-serif">PT Sans Caption, sans-serif</option>
+<option value="Exo, sans-serif">Exo, sans-serif</option>
+<option value="Muli, sans-serif">Muli, sans-serif</option>
+<option value="Fjalla One, sans-serif">Fjalla One, sans-serif</option>
+<option value="Titillium Web, sans-serif">Titillium Web, sans-serif</option>
+<option value="Anton, sans-serif">Anton, sans-serif</option>
+<option value="Archivo, sans-serif">Archivo, sans-serif</option>
+<option value="Poppins, sans-serif">Poppins, sans-serif</option>
+<option value="Nunito, sans-serif">Nunito, sans-serif</option>
+<option value="Josefin Sans, sans-serif">Josefin Sans, sans-serif</option>
+<option value="Rajdhani, sans-serif">Rajdhani, sans-serif</option>
+<option value="Quicksand, sans-serif">Quicksand, sans-serif</option>
+<option value="Cabin, sans-serif">Cabin, sans-serif</option>
+<option value="Baloo, sans-serif">Baloo, sans-serif</option>
+<option value="Rubik, sans-serif">Rubik, sans-serif</option>
+<option value="Arimo, sans-serif">Arimo, sans-serif</option>
+<option value="Cairo, sans-serif">Cairo, sans-serif</option>
+<option value="Hind, sans-serif">Hind, sans-serif</option>
+<option value="Karla, sans-serif">Karla, sans-serif</option>
+<option value="Maven Pro, sans-serif">Maven Pro, sans-serif</option>
+<option value="Jost, sans-serif">Jost, sans-serif</option>
+<option value="Work Sans, sans-serif">Work Sans, sans-serif</option>
+<option value="IBM Plex Sans, sans-serif">IBM Plex Sans, sans-serif</option>
+<option value="Teko, sans-serif">Teko, sans-serif</option>
+<option value="Exo 2, sans-serif">Exo 2, sans-serif</option>
+<option value="Bebas Neue, sans-serif">Bebas Neue, sans-serif</option>
+<option value="Nunito Sans, sans-serif">Nunito Sans, sans-serif</option>
+<option value="Asap, sans-serif">Asap, sans-serif</option>
+<option value="Archivo Narrow, sans-serif">Archivo Narrow, sans-serif</option>
+<option value="Barlow, sans-serif">Barlow, sans-serif</option>
+<option value="Signika, sans-serif">Signika, sans-serif</option>
+<option value="Archivo Black, sans-serif">Archivo Black, sans-serif</option>
+<option value="Oxygen, sans-serif">Oxygen, sans-serif</option>
+<option value="Varela Round, sans-serif">Varela Round, sans-serif</option>
+<option value="Yantramanav, sans-serif">Yantramanav, sans-serif</option>
+<option value="PT Sans Narrow, sans-serif">PT Sans Narrow, sans-serif</option>
+<option value="Prompt, sans-serif">Prompt, sans-serif</option>
+<option value="Noto Serif, serif">Noto Serif, serif</option>
+<option value="Playfair Display SC, serif">Playfair Display SC, serif</option>
+<option value="Cormorant Garamond, serif">Cormorant Garamond, serif</option>
+<option value="Josefin Slab, serif">Josefin Slab, serif</option>
+<option value="Cormorant, serif">Cormorant, serif</option>
+<option value="Cinzel, serif">Cinzel, serif</option>
+<option value="Vollkorn, serif">Vollkorn, serif</option>
+<option value="Cormorant Infant, serif">Cormorant Infant, serif</option>
+<option value="Lora, serif">Lora, serif</option>
+<option value="Playfair Display SC, serif">Playfair Display SC, serif</option>
+<option value="Noto Serif SC, serif">Noto Serif SC, serif</option>
+<option value="Cormorant Unicase, serif">Cormorant Unicase, serif</option>
+<option value="EB Garamond, serif">EB Garamond, serif</option>
+<option value="Cormorant SC, serif">Cormorant SC, serif</option>
+<option value="Amiri, serif">Amiri, serif</option>
+<option value="Alegreya, serif">Alegreya, serif</option>
+<option value="EB Garamond, serif">EB Garamond, serif</option>
+<option value="EB Garamond SC, serif">EB Garamond SC, serif</option>
+<option value="Cormorant Garamond, serif">Cormorant Garamond, serif</option>
+<option value="Alegreya Sans, sans-serif">Alegreya Sans, sans-serif</option>
+<option value="Noto Sans SC, sans-serif">Noto Sans SC, sans-serif</option>
+<option value="Noto Sans JP, sans-serif">Noto Sans JP, sans-serif</option>
+<option value="Noto Sans TC, sans-serif">Noto Sans TC, sans-serif</option>
+<option value="Noto Sans KR, sans-serif">Noto Sans KR, sans-serif</option>
+<option value="Noto Sans HK, sans-serif">Noto Sans HK, sans-serif</option>
+<option value="Noto Sans CJK SC, sans-serif">Noto Sans CJK SC, sans-serif</option>
+<option value="Noto Sans CJK JP, sans-serif">Noto Sans CJK JP, sans-serif</option>
+<option value="Noto Sans CJK TC, sans-serif">Noto Sans CJK TC, sans-serif</option>
+<option value="Noto Sans CJK KR, sans-serif">Noto Sans CJK KR, sans-serif</option>
+<option value="Noto Sans CJK HK, sans-serif">Noto Sans CJK HK, sans-serif</option>
+<option value="Noto Serif JP, serif">Noto Serif JP, serif</option>
+<option value="Noto Serif TC, serif">Noto Serif TC, serif</option>
+<option value="Noto Serif KR, serif">Noto Serif KR, serif</option>
+<option value="Noto Serif HK, serif">Noto Serif HK, serif</option>
+<option value="Noto Serif CJK JP, serif">Noto Serif CJK JP, serif</option>
+<option value="Noto Serif CJK TC, serif">Noto Serif CJK TC, serif</option>
+<option value="Noto Serif CJK KR, serif">Noto Serif CJK KR, serif</option>
+<option value="Noto Serif CJK HK, serif">Noto Serif CJK HK, serif</option>
+<option value="Noto Sans Devanagari, sans-serif">Noto Sans Devanagari, sans-serif</option>
+<option value="Noto Sans Arabic, sans-serif">Noto Sans Arabic, sans-serif</option>
+<option value="Noto Sans Bengali, sans-serif">Noto Sans Bengali, sans-serif</option>
+<option value="Noto Sans Tamil, sans-serif">Noto Sans Tamil, sans-serif</option>
+<option value="Noto Sans Telugu, sans-serif">Noto Sans Telugu, sans-serif</option>
+<option value="Noto Sans Gujarati, sans-serif">Noto Sans Gujarati, sans-serif</option>
+<option value="Noto Sans Kannada, sans-serif">Noto Sans Kannada, sans-serif</option>
+<option value="Noto Sans Malayalam, sans-serif">Noto Sans Malayalam, sans-serif</option>
+<option value="Noto Sans Sinhala, sans-serif">Noto Sans Sinhala, sans-serif</option>
+<option value="Noto Sans Thai, sans-serif">Noto Sans Thai, sans-serif</option>
+<option value="Noto Sans Lao, sans-serif">Noto Sans Lao, sans-serif</option>
+<option value="Noto Sans Tibetan, sans-serif">Noto Sans Tibetan, sans-serif</option>
+<option value="Noto Sans Myanmar, sans-serif">Noto Sans Myanmar, sans-serif</option>
+<option value="Noto Sans Khmer, sans-serif">Noto Sans Khmer, sans-serif</option>
+<option value="Noto Sans Georgian, sans-serif">Noto Sans Georgian, sans-serif</option>
+<option value="Noto Sans Armenian, sans-serif">Noto Sans Armenian, sans-serif</option>
+<option value="Noto Sans Ethiopic, sans-serif">Noto Sans Ethiopic, sans-serif</option>
+<option value="Noto Sans Cherokee, sans-serif">Noto Sans Cherokee, sans-serif</option>
+<option value="Noto Sans Unified Canadian Aboriginal Syllabics, sans-serif">Noto Sans Unified Canadian Aboriginal Syllabics, sans-serif</option>
+<option value="Noto Sans Unified Canadian Aboriginal Syllabics Extended, sans-serif">Noto Sans Unified Canadian Aboriginal Syllabics Extended, sans-serif</option>
+<option value="Noto Sans Ogham, sans-serif">Noto Sans Ogham, sans-serif</option>
+<option value="Noto Sans Tai Le, sans-serif">Noto Sans Tai Le, sans-serif</option>
+<option value="Noto Sans Kayah Li, sans-serif">Noto Sans Kayah Li, sans-serif</option>
+<option value="Noto Sans Rejang, sans-serif">Noto Sans Rejang, sans-serif</option>
+<option value="Noto Sans Cham, sans-serif">Noto Sans Cham, sans-serif</option>
+<option value="Noto Sans Tai Viet, sans-serif">Noto Sans Tai Viet, sans-serif</option>
+<option value="Noto Sans Meetei Mayek, sans-serif">Noto Sans Meetei Mayek, sans-serif</option>
+<option value="Noto Sans Carian, sans-serif">Noto Sans Carian, sans-serif</option>
+<option value="Noto Sans Buginese, sans-serif">Noto Sans Buginese, sans-serif</option>
+<option value="Noto Sans Egyptian Hieroglyphs, sans-serif">Noto Sans Egyptian Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Imperial Aramaic, sans-serif">Noto Sans Imperial Aramaic, sans-serif</option>
+<option value="Noto Sans Inscriptional Pahlavi, sans-serif">Noto Sans Inscriptional Pahlavi, sans-serif</option>
+<option value="Noto Sans Inscriptional Parthian, sans-serif">Noto Sans Inscriptional Parthian, sans-serif</option>
+<option value="Noto Sans Old Persian, sans-serif">Noto Sans Old Persian, sans-serif</option>
+<option value="Noto Sans Old South Arabian, sans-serif">Noto Sans Old South Arabian, sans-serif</option>
+<option value="Noto Sans Old Turkic, sans-serif">Noto Sans Old Turkic, sans-serif</option>
+<option value="Noto Sans Phoenician, sans-serif">Noto Sans Phoenician, sans-serif</option>
+<option value="Noto Sans Sumero-Akkadian Cuneiform, sans-serif">Noto Sans Sumero-Akkadian Cuneiform, sans-serif</option>
+<option value="Noto Sans Ugaritic, sans-serif">Noto Sans Ugaritic, sans-serif</option>
+<option value="Noto Sans Ahom, sans-serif">Noto Sans Ahom, sans-serif</option>
+<option value="Noto Sans Ahom, sans-serif">Noto Sans Ahom, sans-serif</option>
+<option value="Noto Sans Anatolian Hieroglyphs, sans-serif">Noto Sans Anatolian Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Egyptian Hieroglyphs, sans-serif">Noto Sans Egyptian Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Linear A, sans-serif">Noto Sans Linear A, sans-serif</option>
+<option value="Noto Sans Linear B, sans-serif">Noto Sans Linear B, sans-serif</option>
+<option value="Noto Sans Linear Elamite, sans-serif">Noto Sans Linear Elamite, sans-serif</option>
+<option value="Noto Sans Meroitic, sans-serif">Noto Sans Meroitic, sans-serif</option>
+<option value="Noto Sans Meroitic Cursive, sans-serif">Noto Sans Meroitic Cursive, sans-serif</option>
+<option value="Noto Sans Meroitic Hieroglyphs, sans-serif">Noto Sans Meroitic Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Miao, sans-serif">Noto Sans Miao, sans-serif</option>
+<option value="Noto Sans N'Ko, sans-serif">Noto Sans N'Ko, sans-serif</option>
+<option value="Noto Sans Samaritan, sans-serif">Noto Sans Samaritan, sans-serif</option>
+<option value="Noto Sans Lisu, sans-serif">Noto Sans Lisu, sans-serif</option>
+<option value="Noto Sans Vai, sans-serif">Noto Sans Vai, sans-serif</option>
+<option value="Noto Sans Phags-pa, sans-serif">Noto Sans Phags-pa, sans-serif</option>
+<option value="Noto Sans Tai Tham, sans-serif">Noto Sans Tai Tham, sans-serif</option>
+<option value="Noto Sans Tai Nuea, sans-serif">Noto Sans Tai Nuea, sans-serif</option>
+<option value="Noto Sans Tangut, sans-serif">Noto Sans Tangut, sans-serif</option>
+<option value="Noto Sans Cuneiform, sans-serif">Noto Sans Cuneiform, sans-serif</option>
+<option value="Noto Sans Sumero-Akkadian Cuneiform, sans-serif">Noto Sans Sumero-Akkadian Cuneiform, sans-serif</option>
+<option value="Noto Sans Sumero-Akkadian Cuneiform, sans-serif">Noto Sans Sumero-Akkadian Cuneiform, sans-serif</option>
+<option value="Noto Sans Symbols, sans-serif">Noto Sans Symbols, sans-serif</option>
+<option value="Noto Sans Symbols2, sans-serif">Noto Sans Symbols2, sans-serif</option>
+<option value="Noto Sans Symbols3, sans-serif">Noto Sans Symbols3, sans-serif</option>
+<option value="Noto Sans Symbols4, sans-serif">Noto Sans Symbols4, sans-serif</option>
+<option value="Noto Sans Symbols5, sans-serif">Noto Sans Symbols5, sans-serif</option>
+<option value="Noto Sans Symbols6, sans-serif">Noto Sans Symbols6, sans-serif</option>
+<option value="Noto Sans Symbols7, sans-serif">Noto Sans Symbols7, sans-serif</option>
+<option value="Noto Sans Symbols8, sans-serif">Noto Sans Symbols8, sans-serif</option>
+<option value="Noto Sans Symbols9, sans-serif">Noto Sans Symbols9, sans-serif</option>
+<option value="Noto Sans Symbols10, sans-serif">Noto Sans Symbols10, sans-serif</option>
+<option value="Noto Sans Symbols11, sans-serif">Noto Sans Symbols11, sans-serif</option>
+<option value="Noto Sans Symbols12, sans-serif">Noto Sans Symbols12, sans-serif</option>
+<option value="Noto Sans Symbols13, sans-serif">Noto Sans Symbols13, sans-serif</option>
+<option value="Noto Sans Symbols14, sans-serif">Noto Sans Symbols14, sans-serif</option>
+<option value="Noto Sans Symbols15, sans-serif">Noto Sans Symbols15, sans-serif</option>
+<option value="Noto Sans Symbols16, sans-serif">Noto Sans Symbols16, sans-serif</option>
+<option value="Noto Sans Symbols17, sans-serif">Noto Sans Symbols17, sans-serif</option>
+<option value="Noto Sans Symbols18, sans-serif">Noto Sans Symbols18, sans-serif</option>
+<option value="Noto Sans Symbols19, sans-serif">Noto Sans Symbols19, sans-serif</option>
+<option value="Noto Sans Symbols20, sans-serif">Noto Sans Symbols20, sans-serif</option>
+<option value="Noto Sans Symbols21, sans-serif">Noto Sans Symbols21, sans-serif</option>
+<option value="Noto Sans Symbols22, sans-serif">Noto Sans Symbols22, sans-serif</option>
+<option value="Noto Sans Symbols23, sans-serif">Noto Sans Symbols23, sans-serif</option>
+<option value="Noto Sans Symbols24, sans-serif">Noto Sans Symbols24, sans-serif</option>
+<option value="Noto Sans Symbols25, sans-serif">Noto Sans Symbols25, sans-serif</option>
+<option value="Noto Sans Symbols26, sans-serif">Noto Sans Symbols26, sans-serif</option>
+<option value="Noto Sans Symbols27, sans-serif">Noto Sans Symbols27, sans-serif</option>
+<option value="Noto Sans Symbols28, sans-serif">Noto Sans Symbols28, sans-serif</option>
+<option value="Noto Sans Symbols29, sans-serif">Noto Sans Symbols29, sans-serif</option>
+<option value="Noto Sans Symbols30, sans-serif">Noto Sans Symbols30, sans-serif</option>
+<option value="Noto Sans Symbols31, sans-serif">Noto Sans Symbols31, sans-serif</option>
+<option value="Noto Sans Symbols32, sans-serif">Noto Sans Symbols32, sans-serif</option>
+<option value="Noto Sans Symbols33, sans-serif">Noto Sans Symbols33, sans-serif</option>
+<option value="Noto Sans Symbols34, sans-serif">Noto Sans Symbols34, sans-serif</option>
+<option value="Noto Sans Symbols35, sans-serif">Noto Sans Symbols35, sans-serif</option>
+<option value="Noto Sans Symbols36, sans-serif">Noto Sans Symbols36, sans-serif</option>
+<option value="Noto Sans Symbols37, sans-serif">Noto Sans Symbols37, sans-serif</option>
+<option value="Noto Sans Symbols38, sans-serif">Noto Sans Symbols38, sans-serif</option>
+<option value="Noto Sans Symbols39, sans-serif">Noto Sans Symbols39, sans-serif</option>
+<option value="Noto Sans Symbols40, sans-serif">Noto Sans Symbols40, sans-serif</option>
+<option value="Noto Sans Symbols41, sans-serif">Noto Sans Symbols41, sans-serif</option>
+<option value="Noto Sans Symbols42, sans-serif">Noto Sans Symbols42, sans-serif</option>
+<option value="Noto Sans Symbols43, sans-serif">Noto Sans Symbols43, sans-serif</option>
+<option value="Noto Sans Symbols44, sans-serif">Noto Sans Symbols44, sans-serif</option>
+<option value="Noto Sans Symbols45, sans-serif">Noto Sans Symbols45, sans-serif</option>
+<option value="Noto Sans Symbols46, sans-serif">Noto Sans Symbols46, sans-serif</option>
+<option value="Noto Sans Symbols47, sans-serif">Noto Sans Symbols47, sans-serif</option>
+<option value="Noto Sans Symbols48, sans-serif">Noto Sans Symbols48, sans-serif</option>
+<option value="Noto Sans Symbols49, sans-serif">Noto Sans Symbols49, sans-serif</option>
+<option value="Noto Sans Symbols50, sans-serif">Noto Sans Symbols50, sans-serif</option>
+<option value="Noto Sans Symbols51, sans-serif">Noto Sans Symbols51, sans-serif</option>
+<option value="Noto Sans Symbols52, sans-serif">Noto Sans Symbols52, sans-serif</option>
+<option value="Noto Sans Symbols53, sans-serif">Noto Sans Symbols53, sans-serif</option>
+<option value="Noto Sans Symbols54, sans-serif">Noto Sans Symbols54, sans-serif</option>
+<option value="Noto Sans Symbols55, sans-serif">Noto Sans Symbols55, sans-serif</option>
+<option value="Noto Sans Symbols56, sans-serif">Noto Sans Symbols56, sans-serif</option>
+<option value="Noto Sans Symbols57, sans-serif">Noto Sans Symbols57, sans-serif</option>
+<option value="Noto Sans Symbols58, sans-serif">Noto Sans Symbols58, sans-serif</option>
+<option value="Noto Sans Symbols59, sans-serif">Noto Sans Symbols59, sans-serif</option>
+<option value="Noto Sans Symbols60, sans-serif">Noto Sans Symbols60, sans-serif</option>
+<option value="Noto Sans Symbols61, sans-serif">Noto Sans Symbols61, sans-serif</option>
+<option value="Noto Sans Symbols62, sans-serif">Noto Sans Symbols62, sans-serif</option>
+<option value="Noto Sans Symbols63, sans-serif">Noto Sans Symbols63, sans-serif</option>
+<option value="Noto Sans Symbols64, sans-serif">Noto Sans Symbols64, sans-serif</option>
+<option value="Noto Sans Symbols65, sans-serif">Noto Sans Symbols65, sans-serif</option>
+<option value="Noto Sans Symbols66, sans-serif">Noto Sans Symbols66, sans-serif</option>
+<option value="Noto Sans Symbols67, sans-serif">Noto Sans Symbols67, sans-serif</option>
+<option value="Noto Sans Symbols68, sans-serif">Noto Sans Symbols68, sans-serif</option>
+<option value="Noto Sans Symbols69, sans-serif">Noto Sans Symbols69, sans-serif</option>
+<option value="Noto Sans Symbols70, sans-serif">Noto Sans Symbols70, sans-serif</option>
+<option value="Noto Sans Symbols71, sans-serif">Noto Sans Symbols71, sans-serif</option>
+<option value="Noto Sans Symbols72, sans-serif">Noto Sans Symbols72, sans-serif</option>
+<option value="Noto Sans Symbols73, sans-serif">Noto Sans Symbols73, sans-serif</option>
+<option value="Noto Sans Symbols74, sans-serif">Noto Sans Symbols74, sans-serif</option>
+<option value="Noto Sans Symbols75, sans-serif">Noto Sans Symbols75, sans-serif</option>
+<option value="Noto Sans Symbols76, sans-serif">Noto Sans Symbols76, sans-serif</option>
+<option value="Noto Sans Symbols77, sans-serif">Noto Sans Symbols77, sans-serif</option>
+<option value="Noto Sans Symbols78, sans-serif">Noto Sans Symbols78, sans-serif</option>
+<option value="Noto Sans Symbols79, sans-serif">Noto Sans Symbols79, sans-serif</option>
+<option value="Noto Sans Symbols80, sans-serif">Noto Sans Symbols80, sans-serif</option>
+<option value="Noto Sans Symbols81, sans-serif">Noto Sans Symbols81, sans-serif</option>
+<option value="Noto Sans Symbols82, sans-serif">Noto Sans Symbols82, sans-serif</option>
+<option value="Noto Sans Symbols83, sans-serif">Noto Sans Symbols83, sans-serif</option>
+<option value="Noto Sans Symbols84, sans-serif">Noto Sans Symbols84, sans-serif</option>
+<option value="Noto Sans Symbols85, sans-serif">Noto Sans Symbols85, sans-serif</option>
+<option value="Noto Sans Symbols86, sans-serif">Noto Sans Symbols86, sans-serif</option>
+<option value="Noto Sans Symbols87, sans-serif">Noto Sans Symbols87, sans-serif</option>
+<option value="Noto Sans Symbols88, sans-serif">Noto Sans Symbols88, sans-serif</option>
+<option value="Noto Sans Symbols89, sans-serif">Noto Sans Symbols89, sans-serif</option>
+<option value="Noto Sans Symbols90, sans-serif">Noto Sans Symbols90, sans-serif</option>
+<option value="Noto Sans Symbols91, sans-serif">Noto Sans Symbols91, sans-serif</option>
+<option value="Noto Sans Symbols92, sans-serif">Noto Sans Symbols92, sans-serif</option>
+<option value="Noto Sans Symbols93, sans-serif">Noto Sans Symbols93, sans-serif</option>
+<option value="Noto Sans Symbols94, sans-serif">Noto Sans Symbols94, sans-serif</option>
+<option value="Noto Sans Symbols95, sans-serif">Noto Sans Symbols95, sans-serif</option>
+<option value="Noto Sans Symbols96, sans-serif">Noto Sans Symbols96, sans-serif</option>
+<option value="Noto Sans Symbols97, sans-serif">Noto Sans Symbols97, sans-serif</option>
+<option value="Noto Sans Symbols98, sans-serif">Noto Sans Symbols98, sans-serif</option>
+<option value="Noto Sans Symbols99, sans-serif">Noto Sans Symbols99, sans-serif</option>
+<option value="Noto Sans Symbols100, sans-serif">Noto Sans Symbols100, sans-serif</option>
+</select>
+
+                <label for="sectionFontSize${sectionCount}">Font Size:</label>
+                <input type="number" id="sectionFontSize${sectionCount}" name="sectionFontSize${sectionCount}" min="10" max="48" value="14">
+                <label for="sectionMargin${sectionCount}">Margin:</label>
+                <input type="number" id="sectionMargin${sectionCount}" name="sectionMargin${sectionCount}" min="0" value="0">
+                <button type="button" onclick="deleteSection(this)">Delete Section</button>
+                <div class="content-container"></div>
+                <button type="button" onclick="addContent(this)">Add Content</button>
+            `;
+            sectionsContainer.appendChild(sectionDiv);
+            sectionCount++;
+            updatePreview();
+        }
+
+        function deleteSection(button) {
+            button.parentNode.remove();
+            updatePreview();
+        }
+
+        function addContent(button) {
+            const contentContainer = button.previousElementSibling;
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'content-item';
+            contentDiv.innerHTML = `
+                <input type="text" placeholder="Content Title">
+                <textarea rows="4" placeholder="Content Description"></textarea>
+                <input type="text" placeholder="Image URL (optional)">
+                <label for="contentBackground${sectionCount}">Background Color:</label>
+                <input type="color" id="contentBackground${sectionCount}" name="contentBackground${sectionCount}">
+                <label for="contentFont${sectionCount}">Font Family:</label>
+                <select id="contentFont${sectionCount}" name="contentFont${sectionCount}">
+                    <option value="Arial, sans-serif">Arial, sans-serif</option>
+<option value="Times New Roman, serif">Times New Roman, serif</option>
+<option value="Courier New, monospace">Courier New, monospace</option>
+<option value="Helvetica, sans-serif">Helvetica, sans-serif</option>
+<option value="Georgia, serif">Georgia, serif</option>
+<option value="Verdana, sans-serif">Verdana, sans-serif</option>
+<option value="Tahoma, sans-serif">Tahoma, sans-serif</option>
+<option value="Palatino, serif">Palatino, serif</option>
+<option value="Garamond, serif">Garamond, serif</option>
+<option value="Book Antiqua, serif">Book Antiqua, serif</option>
+<option value="Trebuchet MS, sans-serif">Trebuchet MS, sans-serif</option>
+<option value="Arial Black, sans-serif">Arial Black, sans-serif</option>
+<option value="Impact, sans-serif">Impact, sans-serif</option>
+<option value="Lucida Sans Unicode, sans-serif">Lucida Sans Unicode, sans-serif</option>
+<option value="Lucida Grande, sans-serif">Lucida Grande, sans-serif</option>
+<option value="Century Gothic, sans-serif">Century Gothic, sans-serif</option>
+<option value="Geneva, sans-serif">Geneva, sans-serif</option>
+<option value="Optima, sans-serif">Optima, sans-serif</option>
+<option value="Gill Sans, sans-serif">Gill Sans, sans-serif</option>
+<option value="Arial Narrow, sans-serif">Arial Narrow, sans-serif</option>
+<option value="Futura, sans-serif">Futura, sans-serif</option>
+<option value="Copperplate, sans-serif">Copperplate, sans-serif</option>
+<option value="Arial Rounded MT Bold, sans-serif">Arial Rounded MT Bold, sans-serif</option>
+<option value="Franklin Gothic Medium, sans-serif">Franklin Gothic Medium, sans-serif</option>
+<option value="Avantgarde, sans-serif">Avantgarde, sans-serif</option>
+<option value="Rockwell, serif">Rockwell, serif</option>
+<option value="Baskerville, serif">Baskerville, serif</option>
+<option value="Century Schoolbook, serif">Century Schoolbook, serif</option>
+<option value="Andale Mono, monospace">Andale Mono, monospace</option>
+<option value="Courier, monospace">Courier, monospace</option>
+<option value="Lucida Console, monospace">Lucida Console, monospace</option>
+<option value="Monaco, monospace">Monaco, monospace</option>
+<option value="Consolas, monospace">Consolas, monospace</option>
+<option value="Lucida Sans Typewriter, monospace">Lucida Sans Typewriter, monospace</option>
+<option value="DejaVu Sans Mono, monospace">DejaVu Sans Mono, monospace</option>
+<option value="Inconsolata, monospace">Inconsolata, monospace</option>
+<option value="Source Code Pro, monospace">Source Code Pro, monospace</option>
+<option value="Anonymous Pro, monospace">Anonymous Pro, monospace</option>
+<option value="Menlo, monospace">Menlo, monospace</option>
+<option value="PT Mono, monospace">PT Mono, monospace</option>
+<option value="Roboto Mono, monospace">Roboto Mono, monospace</option>
+<option value="IBM Plex Mono, monospace">IBM Plex Mono, monospace</option>
+<option value="Hack, monospace">Hack, monospace</option>
+<option value="Courier Prime, monospace">Courier Prime, monospace</option>
+<option value="Ubuntu Mono, monospace">Ubuntu Mono, monospace</option>
+<option value="Fira Mono, monospace">Fira Mono, monospace</option>
+<option value="Monofur, monospace">Monofur, monospace</option>
+<option value="Droid Sans Mono, monospace">Droid Sans Mono, monospace</option>
+<option value="Liberation Mono, monospace">Liberation Mono, monospace</option>
+<option value="Anonymous, monospace">Anonymous, monospace</option>
+<option value="Space Mono, monospace">Space Mono, monospace</option>
+<option value="JetBrains Mono, monospace">JetBrains Mono, monospace</option>
+<option value="Hackney, monospace">Hackney, monospace</option>
+<option value="Cascadia Code, monospace">Cascadia Code, monospace</option>
+<option value="Hackman, monospace">Hackman, monospace</option>
+<option value="iosevka, monospace">iosevka, monospace</option>
+<option value="Share Tech Mono, monospace">Share Tech Mono, monospace</option>
+<option value="PT Sans, sans-serif">PT Sans, sans-serif</option>
+<option value="Open Sans, sans-serif">Open Sans, sans-serif</option>
+<option value="Lato, sans-serif">Lato, sans-serif</option>
+<option value="Roboto, sans-serif">Roboto, sans-serif</option>
+<option value="Montserrat, sans-serif">Montserrat, sans-serif</option>
+<option value="Raleway, sans-serif">Raleway, sans-serif</option>
+<option value="Noto Sans, sans-serif">Noto Sans, sans-serif</option>
+<option value="Roboto Condensed, sans-serif">Roboto Condensed, sans-serif</option>
+<option value="Oswald, sans-serif">Oswald, sans-serif</option>
+<option value="Ubuntu, sans-serif">Ubuntu, sans-serif</option>
+<option value="PT Serif, serif">PT Serif, serif</option>
+<option value="Merriweather, serif">Merriweather, serif</option>
+<option value="Playfair Display, serif">Playfair Display, serif</option>
+<option value="Source Serif Pro, serif">Source Serif Pro, serif</option>
+<option value="Crimson Text, serif">Crimson Text, serif</option>
+<option value="Libre Baskerville, serif">Libre Baskerville, serif</option>
+<option value="EB Garamond, serif">EB Garamond, serif</option>
+<option value="Arvo, serif">Arvo, serif</option>
+<option value="Bitter, serif">Bitter, serif</option>
+<option value="PT Sans Caption, sans-serif">PT Sans Caption, sans-serif</option>
+<option value="Exo, sans-serif">Exo, sans-serif</option>
+<option value="Muli, sans-serif">Muli, sans-serif</option>
+<option value="Fjalla One, sans-serif">Fjalla One, sans-serif</option>
+<option value="Titillium Web, sans-serif">Titillium Web, sans-serif</option>
+<option value="Anton, sans-serif">Anton, sans-serif</option>
+<option value="Archivo, sans-serif">Archivo, sans-serif</option>
+<option value="Poppins, sans-serif">Poppins, sans-serif</option>
+<option value="Nunito, sans-serif">Nunito, sans-serif</option>
+<option value="Josefin Sans, sans-serif">Josefin Sans, sans-serif</option>
+<option value="Rajdhani, sans-serif">Rajdhani, sans-serif</option>
+<option value="Quicksand, sans-serif">Quicksand, sans-serif</option>
+<option value="Cabin, sans-serif">Cabin, sans-serif</option>
+<option value="Baloo, sans-serif">Baloo, sans-serif</option>
+<option value="Rubik, sans-serif">Rubik, sans-serif</option>
+<option value="Arimo, sans-serif">Arimo, sans-serif</option>
+<option value="Cairo, sans-serif">Cairo, sans-serif</option>
+<option value="Hind, sans-serif">Hind, sans-serif</option>
+<option value="Karla, sans-serif">Karla, sans-serif</option>
+<option value="Maven Pro, sans-serif">Maven Pro, sans-serif</option>
+<option value="Jost, sans-serif">Jost, sans-serif</option>
+<option value="Work Sans, sans-serif">Work Sans, sans-serif</option>
+<option value="IBM Plex Sans, sans-serif">IBM Plex Sans, sans-serif</option>
+<option value="Teko, sans-serif">Teko, sans-serif</option>
+<option value="Exo 2, sans-serif">Exo 2, sans-serif</option>
+<option value="Bebas Neue, sans-serif">Bebas Neue, sans-serif</option>
+<option value="Nunito Sans, sans-serif">Nunito Sans, sans-serif</option>
+<option value="Asap, sans-serif">Asap, sans-serif</option>
+<option value="Archivo Narrow, sans-serif">Archivo Narrow, sans-serif</option>
+<option value="Barlow, sans-serif">Barlow, sans-serif</option>
+<option value="Signika, sans-serif">Signika, sans-serif</option>
+<option value="Archivo Black, sans-serif">Archivo Black, sans-serif</option>
+<option value="Oxygen, sans-serif">Oxygen, sans-serif</option>
+<option value="Varela Round, sans-serif">Varela Round, sans-serif</option>
+<option value="Yantramanav, sans-serif">Yantramanav, sans-serif</option>
+<option value="PT Sans Narrow, sans-serif">PT Sans Narrow, sans-serif</option>
+<option value="Prompt, sans-serif">Prompt, sans-serif</option>
+<option value="Noto Serif, serif">Noto Serif, serif</option>
+<option value="Playfair Display SC, serif">Playfair Display SC, serif</option>
+<option value="Cormorant Garamond, serif">Cormorant Garamond, serif</option>
+<option value="Josefin Slab, serif">Josefin Slab, serif</option>
+<option value="Cormorant, serif">Cormorant, serif</option>
+<option value="Cinzel, serif">Cinzel, serif</option>
+<option value="Vollkorn, serif">Vollkorn, serif</option>
+<option value="Cormorant Infant, serif">Cormorant Infant, serif</option>
+<option value="Lora, serif">Lora, serif</option>
+<option value="Playfair Display SC, serif">Playfair Display SC, serif</option>
+<option value="Noto Serif SC, serif">Noto Serif SC, serif</option>
+<option value="Cormorant Unicase, serif">Cormorant Unicase, serif</option>
+<option value="EB Garamond, serif">EB Garamond, serif</option>
+<option value="Cormorant SC, serif">Cormorant SC, serif</option>
+<option value="Amiri, serif">Amiri, serif</option>
+<option value="Alegreya, serif">Alegreya, serif</option>
+<option value="EB Garamond, serif">EB Garamond, serif</option>
+<option value="EB Garamond SC, serif">EB Garamond SC, serif</option>
+<option value="Cormorant Garamond, serif">Cormorant Garamond, serif</option>
+<option value="Alegreya Sans, sans-serif">Alegreya Sans, sans-serif</option>
+<option value="Noto Sans SC, sans-serif">Noto Sans SC, sans-serif</option>
+<option value="Noto Sans JP, sans-serif">Noto Sans JP, sans-serif</option>
+<option value="Noto Sans TC, sans-serif">Noto Sans TC, sans-serif</option>
+<option value="Noto Sans KR, sans-serif">Noto Sans KR, sans-serif</option>
+<option value="Noto Sans HK, sans-serif">Noto Sans HK, sans-serif</option>
+<option value="Noto Sans CJK SC, sans-serif">Noto Sans CJK SC, sans-serif</option>
+<option value="Noto Sans CJK JP, sans-serif">Noto Sans CJK JP, sans-serif</option>
+<option value="Noto Sans CJK TC, sans-serif">Noto Sans CJK TC, sans-serif</option>
+<option value="Noto Sans CJK KR, sans-serif">Noto Sans CJK KR, sans-serif</option>
+<option value="Noto Sans CJK HK, sans-serif">Noto Sans CJK HK, sans-serif</option>
+<option value="Noto Serif JP, serif">Noto Serif JP, serif</option>
+<option value="Noto Serif TC, serif">Noto Serif TC, serif</option>
+<option value="Noto Serif KR, serif">Noto Serif KR, serif</option>
+<option value="Noto Serif HK, serif">Noto Serif HK, serif</option>
+<option value="Noto Serif CJK JP, serif">Noto Serif CJK JP, serif</option>
+<option value="Noto Serif CJK TC, serif">Noto Serif CJK TC, serif</option>
+<option value="Noto Serif CJK KR, serif">Noto Serif CJK KR, serif</option>
+<option value="Noto Serif CJK HK, serif">Noto Serif CJK HK, serif</option>
+<option value="Noto Sans Devanagari, sans-serif">Noto Sans Devanagari, sans-serif</option>
+<option value="Noto Sans Arabic, sans-serif">Noto Sans Arabic, sans-serif</option>
+<option value="Noto Sans Bengali, sans-serif">Noto Sans Bengali, sans-serif</option>
+<option value="Noto Sans Tamil, sans-serif">Noto Sans Tamil, sans-serif</option>
+<option value="Noto Sans Telugu, sans-serif">Noto Sans Telugu, sans-serif</option>
+<option value="Noto Sans Gujarati, sans-serif">Noto Sans Gujarati, sans-serif</option>
+<option value="Noto Sans Kannada, sans-serif">Noto Sans Kannada, sans-serif</option>
+<option value="Noto Sans Malayalam, sans-serif">Noto Sans Malayalam, sans-serif</option>
+<option value="Noto Sans Sinhala, sans-serif">Noto Sans Sinhala, sans-serif</option>
+<option value="Noto Sans Thai, sans-serif">Noto Sans Thai, sans-serif</option>
+<option value="Noto Sans Lao, sans-serif">Noto Sans Lao, sans-serif</option>
+<option value="Noto Sans Tibetan, sans-serif">Noto Sans Tibetan, sans-serif</option>
+<option value="Noto Sans Myanmar, sans-serif">Noto Sans Myanmar, sans-serif</option>
+<option value="Noto Sans Khmer, sans-serif">Noto Sans Khmer, sans-serif</option>
+<option value="Noto Sans Georgian, sans-serif">Noto Sans Georgian, sans-serif</option>
+<option value="Noto Sans Armenian, sans-serif">Noto Sans Armenian, sans-serif</option>
+<option value="Noto Sans Ethiopic, sans-serif">Noto Sans Ethiopic, sans-serif</option>
+<option value="Noto Sans Cherokee, sans-serif">Noto Sans Cherokee, sans-serif</option>
+<option value="Noto Sans Unified Canadian Aboriginal Syllabics, sans-serif">Noto Sans Unified Canadian Aboriginal Syllabics, sans-serif</option>
+<option value="Noto Sans Unified Canadian Aboriginal Syllabics Extended, sans-serif">Noto Sans Unified Canadian Aboriginal Syllabics Extended, sans-serif</option>
+<option value="Noto Sans Ogham, sans-serif">Noto Sans Ogham, sans-serif</option>
+<option value="Noto Sans Tai Le, sans-serif">Noto Sans Tai Le, sans-serif</option>
+<option value="Noto Sans Kayah Li, sans-serif">Noto Sans Kayah Li, sans-serif</option>
+<option value="Noto Sans Rejang, sans-serif">Noto Sans Rejang, sans-serif</option>
+<option value="Noto Sans Cham, sans-serif">Noto Sans Cham, sans-serif</option>
+<option value="Noto Sans Tai Viet, sans-serif">Noto Sans Tai Viet, sans-serif</option>
+<option value="Noto Sans Meetei Mayek, sans-serif">Noto Sans Meetei Mayek, sans-serif</option>
+<option value="Noto Sans Carian, sans-serif">Noto Sans Carian, sans-serif</option>
+<option value="Noto Sans Buginese, sans-serif">Noto Sans Buginese, sans-serif</option>
+<option value="Noto Sans Egyptian Hieroglyphs, sans-serif">Noto Sans Egyptian Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Imperial Aramaic, sans-serif">Noto Sans Imperial Aramaic, sans-serif</option>
+<option value="Noto Sans Inscriptional Pahlavi, sans-serif">Noto Sans Inscriptional Pahlavi, sans-serif</option>
+<option value="Noto Sans Inscriptional Parthian, sans-serif">Noto Sans Inscriptional Parthian, sans-serif</option>
+<option value="Noto Sans Old Persian, sans-serif">Noto Sans Old Persian, sans-serif</option>
+<option value="Noto Sans Old South Arabian, sans-serif">Noto Sans Old South Arabian, sans-serif</option>
+<option value="Noto Sans Old Turkic, sans-serif">Noto Sans Old Turkic, sans-serif</option>
+<option value="Noto Sans Phoenician, sans-serif">Noto Sans Phoenician, sans-serif</option>
+<option value="Noto Sans Sumero-Akkadian Cuneiform, sans-serif">Noto Sans Sumero-Akkadian Cuneiform, sans-serif</option>
+<option value="Noto Sans Ugaritic, sans-serif">Noto Sans Ugaritic, sans-serif</option>
+<option value="Noto Sans Ahom, sans-serif">Noto Sans Ahom, sans-serif</option>
+<option value="Noto Sans Ahom, sans-serif">Noto Sans Ahom, sans-serif</option>
+<option value="Noto Sans Anatolian Hieroglyphs, sans-serif">Noto Sans Anatolian Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Egyptian Hieroglyphs, sans-serif">Noto Sans Egyptian Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Linear A, sans-serif">Noto Sans Linear A, sans-serif</option>
+<option value="Noto Sans Linear B, sans-serif">Noto Sans Linear B, sans-serif</option>
+<option value="Noto Sans Linear Elamite, sans-serif">Noto Sans Linear Elamite, sans-serif</option>
+<option value="Noto Sans Meroitic, sans-serif">Noto Sans Meroitic, sans-serif</option>
+<option value="Noto Sans Meroitic Cursive, sans-serif">Noto Sans Meroitic Cursive, sans-serif</option>
+<option value="Noto Sans Meroitic Hieroglyphs, sans-serif">Noto Sans Meroitic Hieroglyphs, sans-serif</option>
+<option value="Noto Sans Miao, sans-serif">Noto Sans Miao, sans-serif</option>
+<option value="Noto Sans N'Ko, sans-serif">Noto Sans N'Ko, sans-serif</option>
+<option value="Noto Sans Samaritan, sans-serif">Noto Sans Samaritan, sans-serif</option>
+<option value="Noto Sans Lisu, sans-serif">Noto Sans Lisu, sans-serif</option>
+<option value="Noto Sans Vai, sans-serif">Noto Sans Vai, sans-serif</option>
+<option value="Noto Sans Phags-pa, sans-serif">Noto Sans Phags-pa, sans-serif</option>
+<option value="Noto Sans Tai Tham, sans-serif">Noto Sans Tai Tham, sans-serif</option>
+<option value="Noto Sans Tai Nuea, sans-serif">Noto Sans Tai Nuea, sans-serif</option>
+<option value="Noto Sans Tangut, sans-serif">Noto Sans Tangut, sans-serif</option>
+<option value="Noto Sans Cuneiform, sans-serif">Noto Sans Cuneiform, sans-serif</option>
+<option value="Noto Sans Sumero-Akkadian Cuneiform, sans-serif">Noto Sans Sumero-Akkadian Cuneiform, sans-serif</option>
+<option value="Noto Sans Sumero-Akkadian Cuneiform, sans-serif">Noto Sans Sumero-Akkadian Cuneiform, sans-serif</option>
+<option value="Noto Sans Symbols, sans-serif">Noto Sans Symbols, sans-serif</option>
+<option value="Noto Sans Symbols2, sans-serif">Noto Sans Symbols2, sans-serif</option>
+<option value="Noto Sans Symbols3, sans-serif">Noto Sans Symbols3, sans-serif</option>
+<option value="Noto Sans Symbols4, sans-serif">Noto Sans Symbols4, sans-serif</option>
+<option value="Noto Sans Symbols5, sans-serif">Noto Sans Symbols5, sans-serif</option>
+<option value="Noto Sans Symbols6, sans-serif">Noto Sans Symbols6, sans-serif</option>
+<option value="Noto Sans Symbols7, sans-serif">Noto Sans Symbols7, sans-serif</option>
+<option value="Noto Sans Symbols8, sans-serif">Noto Sans Symbols8, sans-serif</option>
+<option value="Noto Sans Symbols9, sans-serif">Noto Sans Symbols9, sans-serif</option>
+<option value="Noto Sans Symbols10, sans-serif">Noto Sans Symbols10, sans-serif</option>
+<option value="Noto Sans Symbols11, sans-serif">Noto Sans Symbols11, sans-serif</option>
+<option value="Noto Sans Symbols12, sans-serif">Noto Sans Symbols12, sans-serif</option>
+<option value="Noto Sans Symbols13, sans-serif">Noto Sans Symbols13, sans-serif</option>
+<option value="Noto Sans Symbols14, sans-serif">Noto Sans Symbols14, sans-serif</option>
+<option value="Noto Sans Symbols15, sans-serif">Noto Sans Symbols15, sans-serif</option>
+<option value="Noto Sans Symbols16, sans-serif">Noto Sans Symbols16, sans-serif</option>
+<option value="Noto Sans Symbols17, sans-serif">Noto Sans Symbols17, sans-serif</option>
+<option value="Noto Sans Symbols18, sans-serif">Noto Sans Symbols18, sans-serif</option>
+<option value="Noto Sans Symbols19, sans-serif">Noto Sans Symbols19, sans-serif</option>
+<option value="Noto Sans Symbols20, sans-serif">Noto Sans Symbols20, sans-serif</option>
+<option value="Noto Sans Symbols21, sans-serif">Noto Sans Symbols21, sans-serif</option>
+<option value="Noto Sans Symbols22, sans-serif">Noto Sans Symbols22, sans-serif</option>
+<option value="Noto Sans Symbols23, sans-serif">Noto Sans Symbols23, sans-serif</option>
+<option value="Noto Sans Symbols24, sans-serif">Noto Sans Symbols24, sans-serif</option>
+<option value="Noto Sans Symbols25, sans-serif">Noto Sans Symbols25, sans-serif</option>
+<option value="Noto Sans Symbols26, sans-serif">Noto Sans Symbols26, sans-serif</option>
+<option value="Noto Sans Symbols27, sans-serif">Noto Sans Symbols27, sans-serif</option>
+<option value="Noto Sans Symbols28, sans-serif">Noto Sans Symbols28, sans-serif</option>
+<option value="Noto Sans Symbols29, sans-serif">Noto Sans Symbols29, sans-serif</option>
+<option value="Noto Sans Symbols30, sans-serif">Noto Sans Symbols30, sans-serif</option>
+<option value="Noto Sans Symbols31, sans-serif">Noto Sans Symbols31, sans-serif</option>
+<option value="Noto Sans Symbols32, sans-serif">Noto Sans Symbols32, sans-serif</option>
+<option value="Noto Sans Symbols33, sans-serif">Noto Sans Symbols33, sans-serif</option>
+<option value="Noto Sans Symbols34, sans-serif">Noto Sans Symbols34, sans-serif</option>
+<option value="Noto Sans Symbols35, sans-serif">Noto Sans Symbols35, sans-serif</option>
+<option value="Noto Sans Symbols36, sans-serif">Noto Sans Symbols36, sans-serif</option>
+<option value="Noto Sans Symbols37, sans-serif">Noto Sans Symbols37, sans-serif</option>
+<option value="Noto Sans Symbols38, sans-serif">Noto Sans Symbols38, sans-serif</option>
+<option value="Noto Sans Symbols39, sans-serif">Noto Sans Symbols39, sans-serif</option>
+<option value="Noto Sans Symbols40, sans-serif">Noto Sans Symbols40, sans-serif</option>
+<option value="Noto Sans Symbols41, sans-serif">Noto Sans Symbols41, sans-serif</option>
+<option value="Noto Sans Symbols42, sans-serif">Noto Sans Symbols42, sans-serif</option>
+<option value="Noto Sans Symbols43, sans-serif">Noto Sans Symbols43, sans-serif</option>
+<option value="Noto Sans Symbols44, sans-serif">Noto Sans Symbols44, sans-serif</option>
+<option value="Noto Sans Symbols45, sans-serif">Noto Sans Symbols45, sans-serif</option>
+<option value="Noto Sans Symbols46, sans-serif">Noto Sans Symbols46, sans-serif</option>
+<option value="Noto Sans Symbols47, sans-serif">Noto Sans Symbols47, sans-serif</option>
+<option value="Noto Sans Symbols48, sans-serif">Noto Sans Symbols48, sans-serif</option>
+<option value="Noto Sans Symbols49, sans-serif">Noto Sans Symbols49, sans-serif</option>
+<option value="Noto Sans Symbols50, sans-serif">Noto Sans Symbols50, sans-serif</option>
+<option value="Noto Sans Symbols51, sans-serif">Noto Sans Symbols51, sans-serif</option>
+<option value="Noto Sans Symbols52, sans-serif">Noto Sans Symbols52, sans-serif</option>
+<option value="Noto Sans Symbols53, sans-serif">Noto Sans Symbols53, sans-serif</option>
+<option value="Noto Sans Symbols54, sans-serif">Noto Sans Symbols54, sans-serif</option>
+<option value="Noto Sans Symbols55, sans-serif">Noto Sans Symbols55, sans-serif</option>
+<option value="Noto Sans Symbols56, sans-serif">Noto Sans Symbols56, sans-serif</option>
+<option value="Noto Sans Symbols57, sans-serif">Noto Sans Symbols57, sans-serif</option>
+<option value="Noto Sans Symbols58, sans-serif">Noto Sans Symbols58, sans-serif</option>
+<option value="Noto Sans Symbols59, sans-serif">Noto Sans Symbols59, sans-serif</option>
+<option value="Noto Sans Symbols60, sans-serif">Noto Sans Symbols60, sans-serif</option>
+<option value="Noto Sans Symbols61, sans-serif">Noto Sans Symbols61, sans-serif</option>
+<option value="Noto Sans Symbols62, sans-serif">Noto Sans Symbols62, sans-serif</option>
+<option value="Noto Sans Symbols63, sans-serif">Noto Sans Symbols63, sans-serif</option>
+<option value="Noto Sans Symbols64, sans-serif">Noto Sans Symbols64, sans-serif</option>
+<option value="Noto Sans Symbols65, sans-serif">Noto Sans Symbols65, sans-serif</option>
+<option value="Noto Sans Symbols66, sans-serif">Noto Sans Symbols66, sans-serif</option>
+<option value="Noto Sans Symbols67, sans-serif">Noto Sans Symbols67, sans-serif</option>
+<option value="Noto Sans Symbols68, sans-serif">Noto Sans Symbols68, sans-serif</option>
+<option value="Noto Sans Symbols69, sans-serif">Noto Sans Symbols69, sans-serif</option>
+<option value="Noto Sans Symbols70, sans-serif">Noto Sans Symbols70, sans-serif</option>
+<option value="Noto Sans Symbols71, sans-serif">Noto Sans Symbols71, sans-serif</option>
+<option value="Noto Sans Symbols72, sans-serif">Noto Sans Symbols72, sans-serif</option>
+<option value="Noto Sans Symbols73, sans-serif">Noto Sans Symbols73, sans-serif</option>
+<option value="Noto Sans Symbols74, sans-serif">Noto Sans Symbols74, sans-serif</option>
+<option value="Noto Sans Symbols75, sans-serif">Noto Sans Symbols75, sans-serif</option>
+<option value="Noto Sans Symbols76, sans-serif">Noto Sans Symbols76, sans-serif</option>
+<option value="Noto Sans Symbols77, sans-serif">Noto Sans Symbols77, sans-serif</option>
+<option value="Noto Sans Symbols78, sans-serif">Noto Sans Symbols78, sans-serif</option>
+<option value="Noto Sans Symbols79, sans-serif">Noto Sans Symbols79, sans-serif</option>
+<option value="Noto Sans Symbols80, sans-serif">Noto Sans Symbols80, sans-serif</option>
+<option value="Noto Sans Symbols81, sans-serif">Noto Sans Symbols81, sans-serif</option>
+<option value="Noto Sans Symbols82, sans-serif">Noto Sans Symbols82, sans-serif</option>
+<option value="Noto Sans Symbols83, sans-serif">Noto Sans Symbols83, sans-serif</option>
+<option value="Noto Sans Symbols84, sans-serif">Noto Sans Symbols84, sans-serif</option>
+<option value="Noto Sans Symbols85, sans-serif">Noto Sans Symbols85, sans-serif</option>
+<option value="Noto Sans Symbols86, sans-serif">Noto Sans Symbols86, sans-serif</option>
+<option value="Noto Sans Symbols87, sans-serif">Noto Sans Symbols87, sans-serif</option>
+<option value="Noto Sans Symbols88, sans-serif">Noto Sans Symbols88, sans-serif</option>
+<option value="Noto Sans Symbols89, sans-serif">Noto Sans Symbols89, sans-serif</option>
+<option value="Noto Sans Symbols90, sans-serif">Noto Sans Symbols90, sans-serif</option>
+<option value="Noto Sans Symbols91, sans-serif">Noto Sans Symbols91, sans-serif</option>
+<option value="Noto Sans Symbols92, sans-serif">Noto Sans Symbols92, sans-serif</option>
+<option value="Noto Sans Symbols93, sans-serif">Noto Sans Symbols93, sans-serif</option>
+<option value="Noto Sans Symbols94, sans-serif">Noto Sans Symbols94, sans-serif</option>
+<option value="Noto Sans Symbols95, sans-serif">Noto Sans Symbols95, sans-serif</option>
+<option value="Noto Sans Symbols96, sans-serif">Noto Sans Symbols96, sans-serif</option>
+<option value="Noto Sans Symbols97, sans-serif">Noto Sans Symbols97, sans-serif</option>
+<option value="Noto Sans Symbols98, sans-serif">Noto Sans Symbols98, sans-serif</option>
+<option value="Noto Sans Symbols99, sans-serif">Noto Sans Symbols99, sans-serif</option>
+<option value="Noto Sans Symbols100, sans-serif">Noto Sans Symbols100, sans-serif</option>
+</select>
+
+                <label for="contentFontSize${sectionCount}">Font Size:</label>
+                <input type="number" id="contentFontSize${sectionCount}" name="contentFontSize${sectionCount}" min="10" max="48" value="14">
+                <label for="contentMargin${sectionCount}">Margin:</label>
+                <input type="number" id="contentMargin${sectionCount}" name="contentMargin${sectionCount}" min="0" value="0">
+                <button type="button" onclick="deleteContent(this)">Delete Content</button>
+            `;
+            contentContainer.appendChild(contentDiv);
+            updatePreview();
+        }
+
+        function deleteContent(button) {
+            button.parentNode.remove();
+            updatePreview();
+        }
+
+        function updatePreview() {
+            const title = document.getElementById('title').value;
+            let htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${title}</title>
+                </head>
+                <body>
+            `;
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
+                const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
+                const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
+                const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
+                const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
+                htmlContent += `
+                    <section style="background-color: ${sectionBackground}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
+                        <h2>${sectionTitle}</h2>
+                `;
+                const contentItems = section.querySelectorAll('.content-item');
+                contentItems.forEach((contentItem, contentIndex) => {
+                    const contentTitle = contentItem.querySelector('input[type="text"]').value;
+                    const contentDescription = contentItem.querySelector('textarea').value;
+                    const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
+                    const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}`).value;
+                    const contentFont = contentItem.querySelector(`#contentFont${index + 1}`).value;
+                    const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
+                    const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
+                    htmlContent += `
+                        <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                            <h3>${contentTitle}</h3>
+                            ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
+                            <p>${contentDescription}</p>
+                        </div>
+                    `;
+                });
+                htmlContent += `
+                    </section>
+                `;
+            });
+            htmlContent += `
+                </body>
+                </html>
+            `;
+            const livePreview = document.getElementById('livePreview');
+            const livePreviewDoc = livePreview.contentDocument || livePreview.contentWindow.document;
+            livePreviewDoc.body.innerHTML = htmlContent;
+        }
+
+        document.getElementById('copyCode').addEventListener('click', function() {
+            const title = document.getElementById('title').value;
+            let htmlContent = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${title}</title>
+                </head>
+                <body>
+            `;
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
+                const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
+                const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
+                const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
+                const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
+                htmlContent += `
+                    <section style="background-color: ${sectionBackground}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
+                        <h2>${sectionTitle}</h2>
+                `;
+                const contentItems = section.querySelectorAll('.content-item');
+                contentItems.forEach((contentItem, contentIndex) => {
+                    const contentTitle = contentItem.querySelector('input[type="text"]').value;
+                    const contentDescription = contentItem.querySelector('textarea').value;
+                    const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
+                    const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}`).value;
+                    const contentFont = contentItem.querySelector(`#contentFont${index + 1}`).value;
+                    const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
+                    const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
+                    htmlContent += `
+                        <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                            <h3>${contentTitle}</h3>
+                            ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
+                            <p>${contentDescription}</p>
+                        </div>
+                    `;
+                });
+                htmlContent += `
+                    </section>
+                `;
+            });
+            htmlContent += `
+                </body>
+                </html>
+            `;
+            const generatedHtml = document.createElement('textarea');
+            generatedHtml.value = htmlContent;
+            document.body.appendChild(generatedHtml);
+            generatedHtml.select();
+            document.execCommand('copy');
+            alert('HTML code copied to clipboard!');
+            document.body.removeChild(generatedHtml);
+        });
+        
+        document.getElementById('title').addEventListener('input', updatePreview);
+        document.getElementById('sectionsContainer').addEventListener('input', updatePreview);
+    </script>
+</body>
+</html>
