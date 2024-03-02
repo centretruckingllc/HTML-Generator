@@ -47,6 +47,12 @@ function addContent(sectionIndex) {
         <textarea id="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" rows="4"></textarea>
         <label for="contentImageUrl${sectionIndex}_${contentContainer.children.length + 1}">Image URL:</label>
         <input type="text" id="contentImageUrl${sectionIndex}_${contentContainer.children.length + 1}" name="contentImageUrl${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="buttonName${sectionIndex}_${contentContainer.children.length + 1}">Button Name:</label>
+        <input type="text" id="buttonName${sectionIndex}_${contentContainer.children.length + 1}" name="buttonName${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="buttonColor${sectionIndex}_${contentContainer.children.length + 1}">Button Color:</label>
+        <input type="color" id="buttonColor${sectionIndex}_${contentContainer.children.length + 1}" name="buttonColor${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}">Button URL:</label>
+        <input type="text" id="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}" name="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}">
         <label for="contentTitleBackground${sectionIndex}_${contentContainer.children.length + 1}">Title Background Color:</label>
         <input type="color" id="contentTitleBackground${sectionIndex}_${contentContainer.children.length + 1}" name="contentTitleBackground${sectionIndex}_${contentContainer.children.length + 1}">
         <label for="contentTitleFontColor${sectionIndex}_${contentContainer.children.length + 1}">Title Font Color:</label>
@@ -67,14 +73,6 @@ function addContent(sectionIndex) {
         </select>
         <label for="contentDescFontSize${sectionIndex}_${contentContainer.children.length + 1}">Description Font Size:</label>
         <input type="number" id="contentDescFontSize${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescFontSize${sectionIndex}_${contentContainer.children.length + 1}" min="8" max="400" value="14">
-        
-        <label for="buttonName${sectionIndex}_${contentContainer.children.length + 1}">Button Name:</label>
-        <input type="text" id="buttonName${sectionIndex}_${contentContainer.children.length + 1}" name="buttonName${sectionIndex}_${contentContainer.children.length + 1}">
-        <label for="buttonColor${sectionIndex}_${contentContainer.children.length + 1}">Button Color:</label>
-        <input type="color" id="buttonColor${sectionIndex}_${contentContainer.children.length + 1}" name="buttonColor${sectionIndex}_${contentContainer.children.length + 1}">
-        <label for="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}">Button URL:</label>
-        <input type="text" id="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}" name="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}">
-
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
     `;
     contentContainer.appendChild(contentDiv);
