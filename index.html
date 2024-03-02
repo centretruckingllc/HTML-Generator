@@ -405,9 +405,9 @@
             contentContainer.appendChild(contentDiv);
             updatePreview();
         }
-
+        
         function adjustImageSize(button, direction) {
-            const selectElement = button.parentNode.querySelector(`select`);
+            const selectElement = button.parentNode.querySelector('select');
             const currentValue = parseFloat(selectElement.value.replace('%', ''));
             let newValue;
             if (direction === '+') {
