@@ -71,36 +71,22 @@ function addContent(sectionIndex) {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content-item resizable';
     contentDiv.innerHTML = `
-        <input type="text" placeholder="Content Title">
-        <textarea rows="4" placeholder="Content Description"></textarea>
-        <input type="text" placeholder="Image URL (optional)">
-        <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
-        <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
-        <label for="fontFamily${sectionIndex}">Font Family:</label>
-        <select id="fontFamily${sectionIndex}${contentContainer.children.length + 1}" name="fontFamily${sectionIndex}"></select>
+        <label for="contentTitle${sectionIndex}_${contentContainer.children.length + 1}">Content Title:</label>
+        <input type="text" id="contentTitle${sectionIndex}_${contentContainer.children.length + 1}" name="contentTitle${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="contentDescription${sectionIndex}_${contentContainer.children.length + 1}">Content Description:</label>
+        <textarea id="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" rows="4"></textarea>
+        <label for="contentBackground${sectionIndex}_${contentContainer.children.length + 1}">Background Color:</label>
+        <input type="color" id="contentBackground${sectionIndex}_${contentContainer.children.length + 1}" name="contentBackground${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="contentFontColor${sectionIndex}_${contentContainer.children.length + 1}">Font Color:</label>
+        <input type="color" id="contentFontColor${sectionIndex}_${contentContainer.children.length + 1}" name="contentFontColor${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="contentFont${sectionIndex}_${contentContainer.children.length + 1}">Font Family:</label>
+        <select id="contentFont${sectionIndex}_${contentContainer.children.length + 1}" name="contentFont${sectionIndex}_${contentContainer.children.length + 1}"></select>
+        <label for="contentFontSize${sectionIndex}_${contentContainer.children.length + 1}">Font Size:</label>
+        <input type="number" id="contentFontSize${sectionIndex}_${contentContainer.children.length + 1}" name="contentFontSize${sectionIndex}_${contentContainer.children.length + 1}" min="8" max="400" value="14">
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
     `;
     contentContainer.appendChild(contentDiv);
     updatePreview();
-}
-
-function adjustImageSize(button, direction) {
-    const contentDiv = button.parentNode;
-    const imageElement = contentDiv.querySelector('img');
-    if (imageElement) {
-        let currentWidth = imageElement.style.width;
-        if (!currentWidth) {
-            currentWidth = '100%'; // Default to 100% if width is not set
-        }
-        let newValue;
-        if (direction === '+') {
-            newValue = Math.min(parseInt(currentWidth) + 5, 100); // Increase by 5% with a maximum of 100%
-        } else if (direction === '-') {
-            newValue = Math.max(parseInt(currentWidth) - 5, 5); // Decrease by 5% with a minimum of 5%
-        }
-        imageElement.style.width = `${newValue}%`;
-        updatePreview();
-    }
 }
 
 function deleteContent(button) {
@@ -134,14 +120,15 @@ function updatePreview() {
         `;
         const contentItems = section.querySelectorAll('.content-item');
         contentItems.forEach((contentItem, contentIndex) => {
-            const contentTitle = contentItem.querySelector('input[type="text"]').value;
-            const contentDescription = contentItem.querySelector('textarea').value;
-            const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`).value;
+            const contentTitle = contentItem.querySelector(`#contentTitle${index + 1}_${contentIndex + 1}`).value;
+            const contentDescription = contentItem.querySelector(`#contentDescription${index + 1}_${contentIndex + 1}`).value;
+            const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}_${contentIndex + 1}`).value;
+            const contentFontColor = contentItem.querySelector(`#contentFontColor${index + 1}_${contentIndex + 1}`).value;
+            const contentFont = contentItem.querySelector(`#contentFont${index + 1}_${contentIndex + 1}`).value;
+            const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}_${contentIndex + 1}`).value + 'px';
             htmlContent += `
-                <div class="content" style="font-family: ${contentFont};">
+                <div class="content" style="background-color: ${contentBackground}; color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize};">
                     <h3>${contentTitle}</h3>
-                    ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                     <p>${contentDescription}</p>
                 </div>
             `;
@@ -185,14 +172,15 @@ function copyCode() {
         `;
         const contentItems = section.querySelectorAll('.content-item');
         contentItems.forEach((contentItem, contentIndex) => {
-            const contentTitle = contentItem.querySelector('input[type="text"]').value;
-            const contentDescription = contentItem.querySelector('textarea').value;
-            const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`).value;
+            const contentTitle = contentItem.querySelector(`#contentTitle${index + 1}_${contentIndex + 1}`).value;
+            const contentDescription = contentItem.querySelector(`#contentDescription${index + 1}_${contentIndex + 1}`).value;
+            const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}_${contentIndex + 1}`).value;
+            const contentFontColor = contentItem.querySelector(`#contentFontColor${index + 1}_${contentIndex + 1}`).value;
+            const contentFont = contentItem.querySelector(`#contentFont${index + 1}_${contentIndex + 1}`).value;
+            const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}_${contentIndex + 1}`).value + 'px';
             htmlContent += `
-                <div class="content" style="font-family: ${contentFont};">
+                <div class="content" style="background-color: ${contentBackground}; color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize};">
                     <h3>${contentTitle}</h3>
-                    ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                     <p>${contentDescription}</p>
                 </div>
             `;
