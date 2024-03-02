@@ -22,7 +22,7 @@ function addSection() {
         <input type="number" id="sectionMargin${sectionCount}" name="sectionMargin${sectionCount}" min="0" value="0">
         <button type="button" onclick="deleteSection(this)">Delete Section</button>
         <div class="content-container"></div>
-        <button type="button" onclick="addContent(this)">Add Content</button>
+        <button type="button" onclick="addContent(${sectionCount})">Add Content</button>
     `;
     sectionsContainer.appendChild(sectionDiv);
     sectionCount++;
@@ -34,8 +34,8 @@ function deleteSection(button) {
     updatePreview();
 }
 
-function addContent(button) {
-    const contentContainer = button.previousElementSibling.previousElementSibling;
+function addContent(sectionIndex) {
+    const contentContainer = document.getElementById(`section${sectionIndex}`).getElementsByClassName('content-container')[0];
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content-item resizable';
     contentDiv.innerHTML = `
@@ -44,8 +44,8 @@ function addContent(button) {
         <input type="text" placeholder="Image URL (optional)">
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
-        <label for="fontFamily${sectionCount}">Font Family:</label>
-        <select id="fontFamily${sectionCount}" name="fontFamily${sectionCount}">
+        <label for="fontFamily${sectionIndex}">Font Family:</label>
+        <select id="fontFamily${sectionIndex}" name="fontFamily${sectionIndex}">
             <option value="Arial, sans-serif">Arial, sans-serif</option>
         </select>
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
@@ -53,6 +53,8 @@ function addContent(button) {
     contentContainer.appendChild(contentDiv);
     updatePreview();
 }
+
+// Rest of the code remains the same...
 
 function adjustImageSize(button, direction) {
     const contentDiv = button.parentNode;
