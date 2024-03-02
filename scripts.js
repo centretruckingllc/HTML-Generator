@@ -18,7 +18,7 @@ async function fetchFontOptions() {
 
 // Function to populate font select dropdowns
 function populateFontSelects() {
-    const fontSelects = document.querySelectorAll('[id^="sectionFont"], [id^="fontFamily"], [id^="contentFont"]');
+    const fontSelects = document.querySelectorAll('[id^="sectionFont"], [id^="contentFont"]');
     fontSelects.forEach(select => {
         // Clear existing options
         select.innerHTML = "";
