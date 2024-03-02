@@ -788,12 +788,12 @@
             sections.forEach((section, index) => {
                 const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
                 const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
-                const sectionFontColor = sectionItem.querySelector(`#sectionFontColor${index + 1}`).value;
+                const sectionFontColor = section.querySelector(`#sectionFontColor${index + 1}`).value;
                 const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
                 const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
                 const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
                 htmlContent += `
-                    <section style="background-color: ${sectionBackground}; font-color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
+                    <section style="background-color: ${sectionBackground}; color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
                         <h2>${sectionTitle}</h2>
                 `;
                 const contentItems = section.querySelectorAll('.content-item');
@@ -807,7 +807,7 @@
                     const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
                     const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                        <div class="content" style="background-color: ${contentBackground}; color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
@@ -848,7 +848,7 @@
                 const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
                 const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
                 htmlContent += `
-                    <section style="background-color: ${sectionBackground}; font-color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
+                    <section style="background-color: ${sectionBackground}; color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
                         <h2>${sectionTitle}</h2>
                 `;
                 const contentItems = section.querySelectorAll('.content-item');
@@ -862,7 +862,7 @@
                     const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
                     const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
+                        <div class="content" style="background-color: ${contentBackground}; color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
