@@ -43,6 +43,10 @@ function addContent(sectionIndex) {
     contentDiv.innerHTML = `
         <label for="contentTitle${sectionIndex}_${contentContainer.children.length + 1}">Content Title:</label>
         <input type="text" id="contentTitle${sectionIndex}_${contentContainer.children.length + 1}" name="contentTitle${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="contentDescription${sectionIndex}_${contentContainer.children.length + 1}">Content Description:</label>
+        <textarea id="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" rows="4"></textarea>
+        <label for="contentImageUrl${sectionIndex}_${contentContainer.children.length + 1}">Image URL:</label>
+        <input type="text" id="contentImageUrl${sectionIndex}_${contentContainer.children.length + 1}" name="contentImageUrl${sectionIndex}_${contentContainer.children.length + 1}">
         <label for="contentTitleBackground${sectionIndex}_${contentContainer.children.length + 1}">Title Background Color:</label>
         <input type="color" id="contentTitleBackground${sectionIndex}_${contentContainer.children.length + 1}" name="contentTitleBackground${sectionIndex}_${contentContainer.children.length + 1}">
         <label for="contentTitleFontColor${sectionIndex}_${contentContainer.children.length + 1}">Title Font Color:</label>
@@ -53,8 +57,6 @@ function addContent(sectionIndex) {
         </select>
         <label for="contentTitleFontSize${sectionIndex}_${contentContainer.children.length + 1}">Title Font Size:</label>
         <input type="number" id="contentTitleFontSize${sectionIndex}_${contentContainer.children.length + 1}" name="contentTitleFontSize${sectionIndex}_${contentContainer.children.length + 1}" min="8" max="400" value="14">
-        <label for="contentDescription${sectionIndex}_${contentContainer.children.length + 1}">Content Description:</label>
-        <textarea id="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescription${sectionIndex}_${contentContainer.children.length + 1}" rows="4"></textarea>
         <label for="contentDescBackground${sectionIndex}_${contentContainer.children.length + 1}">Description Background Color:</label>
         <input type="color" id="contentDescBackground${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescBackground${sectionIndex}_${contentContainer.children.length + 1}">
         <label for="contentDescFontColor${sectionIndex}_${contentContainer.children.length + 1}">Description Font Color:</label>
