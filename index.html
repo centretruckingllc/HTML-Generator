@@ -801,11 +801,11 @@
                     const contentTitle = contentItem.querySelector('input[type="text"]').value;
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-                    const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}`).value;
-                    const contentFontColor = contentItem.querySelector(`#contentFontColor${index + 1}`).value;
-                    const contentFont = contentItem.querySelector(`#contentFont${index + 1}`).value;
-                    const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
-                    const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
+                    const contentBackground = contentItem.querySelector(`#contentBackground${content.index + 1}`).value;
+                    const contentFontColor = contentItem.querySelector(`#contentFontColor${content.index + 1}`).value;
+                    const contentFont = contentItem.querySelector(`#contentFont${content.index + 1}`).value;
+                    const contentFontSize = contentItem.querySelector(`#contentFontSize${content.index + 1}`).value + 'px';
+                    const contentMargin = contentItem.querySelector(`#contentMargin${content.index + 1}`).value + 'px';
                     htmlContent += `
                         <div class="content" style="background-color: ${contentBackground}; color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
@@ -856,11 +856,11 @@
                     const contentTitle = contentItem.querySelector('input[type="text"]').value;
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-                    const contentBackground = contentItem.querySelector(`#contentBackground${index + 1}`).value;
-                    const contentFontColor = contentItem.querySelector(`#contentFontColor${index + 1}`).value;
-                    const contentFont = contentItem.querySelector(`#contentFont${index + 1}`).value;
-                    const contentFontSize = contentItem.querySelector(`#contentFontSize${index + 1}`).value + 'px';
-                    const contentMargin = contentItem.querySelector(`#contentMargin${index + 1}`).value + 'px';
+                    const contentBackground = contentItem.querySelector(`#contentBackground${content.index + 1}`).value;
+                    const contentFontColor = contentItem.querySelector(`#contentFontColor${content.index + 1}`).value;
+                    const contentFont = contentItem.querySelector(`#contentFont${content.index + 1}`).value;
+                    const contentFontSize = contentItem.querySelector(`#contentFontSize${content.index + 1}`).value + 'px';
+                    const contentMargin = contentItem.querySelector(`#contentMargin${content.index + 1}`).value + 'px';
                     htmlContent += `
                         <div class="content" style="background-color: ${contentBackground}; color: ${contentFontColor}; font-family: ${contentFont}; font-size: ${contentFontSize}; margin: ${contentMargin};">
                             <h3>${contentTitle}</h3>
