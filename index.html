@@ -72,7 +72,7 @@
         <button type="button" onclick="addSection()">Add Section</button>
         <h2>Live Preview</h2>
         <iframe id="livePreview"></iframe>
-    </div>
+    </form>
 
     <button id="copyCode" onclick="copyCode()">Copy Code</button>
 
@@ -85,6 +85,7 @@
             const sectionsContainer = document.getElementById('sectionsContainer');
             const sectionDiv = document.createElement('div');
             sectionDiv.className = 'section';
+            sectionDiv.dataset.sectionIndex = sectionCount;
             sectionDiv.innerHTML = `
                 <hr>
                 <label for="sectionTitle${sectionCount}">Title of Section ${sectionCount}:</label>
@@ -94,7 +95,7 @@
                 <label for="sectionFontColor${sectionCount}">Font Color:</label>
                 <input type="color" id="sectionFontColor${sectionCount}" name="sectionFontColor${sectionCount}">
                 <label for="sectionFont${sectionCount}">Font Family:</label>
-                <select id="sectionFont${sectionCount}" name="sectionFont${sectionCount}
+                <select id="sectionFont${sectionCount}" name="sectionFont${sectionCount}">
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
                     <option value="Times New Roman, serif">Times New Roman, serif</option>
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
@@ -251,7 +252,8 @@
         }
 
         function addContent(button) {
-            const contentContainer = button.previousElementSibling;
+            const section = button.parentNode;
+            const contentContainer = section.querySelector('.content-container');
             const contentDiv = document.createElement('div');
             contentDiv.className = 'content-item resizable';
             contentDiv.innerHTML = `
@@ -260,9 +262,8 @@
                 <input type="text" placeholder="Image URL (optional)">
                 <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
                 <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
-                </select>
-                <label for="fontFamily${sectionCount}">Font Family:</label>
-                <select id="fontFamily${sectionCount}" name="fontFamily${sectionCount}">
+                <label for="fontFamily${section.dataset.sectionIndex}_${contentContainer.children.length}">Font Family:</label>
+                <select id="fontFamily${section.dataset.sectionIndex}_${contentContainer.children.length}" name="fontFamily${section.dataset.sectionIndex}_${contentContainer.children.length}">
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
                     <option value="Times New Roman, serif">Times New Roman, serif</option>
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
@@ -405,7 +406,7 @@
             contentContainer.appendChild(contentDiv);
             updatePreview();
         }
-        
+
         function adjustImageSize(button, direction) {
             const selectElement = button.parentNode.querySelector('select');
             const currentValue = parseFloat(selectElement.value.replace('%', ''));
@@ -453,10 +454,9 @@
                     const contentTitle = contentItem.querySelector('input[type="text"]').value;
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-                    const contentBackground = contentItem.querySelector(`#imageSize${contentIndex + 1}`).value;
-                    const contentFont = contentItem.querySelector(`#fontFamily${contentIndex + 1}`).value;
+                    const contentFont = contentItem.querySelector(`#fontFamily${section.dataset.sectionIndex}_${contentIndex}`).value;
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont};">
+                        <div class="content" style="font-family: ${contentFont};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
@@ -476,7 +476,7 @@
             livePreviewDoc.body.innerHTML = htmlContent;
         }
 
-        document.getElementById('copyCode').addEventListener('click', function() {
+        function copyCode() {
             const title = document.getElementById('title').value;
             let htmlContent = `
                 <!DOCTYPE html>
@@ -505,10 +505,9 @@
                     const contentTitle = contentItem.querySelector('input[type="text"]').value;
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-                    const contentBackground = contentItem.querySelector(`#imageSize${contentIndex + 1}`).value;
-                    const contentFont = contentItem.querySelector(`#fontFamily${contentIndex + 1}`).value;
+                    const contentFont = contentItem.querySelector(`#fontFamily${section.dataset.sectionIndex}_${contentIndex}`).value;
                     htmlContent += `
-                        <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont};">
+                        <div class="content" style="font-family: ${contentFont};">
                             <h3>${contentTitle}</h3>
                             ${imageURL ? `<div class="image-container"><img src="${imageURL}" alt="Image"></div>` : ''}
                             <p>${contentDescription}</p>
@@ -530,7 +529,7 @@
             document.execCommand('copy');
             alert('HTML code copied to clipboard!');
             document.body.removeChild(generatedHtml);
-        });
+        }
 
         document.getElementById('title').addEventListener('input', updatePreview);
         document.getElementById('sectionsContainer').addEventListener('input', updatePreview);
