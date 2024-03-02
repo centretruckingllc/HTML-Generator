@@ -45,7 +45,7 @@ function addContent(button) {
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
         <label for="fontFamily${sectionCount}">Font Family:</label>
-        const contentFont = contentItem.querySelector(`#fontFamily${index + 1}`).value;
+        const contentFont = contentItem.querySelector(`#fontFamily${sectionCount}`).value;
             <option value="Arial, sans-serif">Arial, sans-serif</option>
         </select>
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
