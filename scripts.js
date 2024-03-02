@@ -4,6 +4,7 @@ function addSection() {
     const sectionsContainer = document.getElementById('sectionsContainer');
     const sectionDiv = document.createElement('div');
     sectionDiv.className = 'section';
+    sectionDiv.id = `section${sectionCount}`; // Assign unique id to each section
     sectionDiv.innerHTML = `
         <hr>
         <label for="sectionTitle${sectionCount}">Title of Section ${sectionCount}:</label>
@@ -35,7 +36,8 @@ function deleteSection(button) {
 }
 
 function addContent(sectionIndex) {
-    const contentContainer = document.getElementById(`section${sectionIndex}`).getElementsByClassName('content-container')[0];
+    const section = document.getElementById(`section${sectionIndex}`);
+    const contentContainer = section.querySelector('.content-container');
     const contentDiv = document.createElement('div');
     contentDiv.className = 'content-item resizable';
     contentDiv.innerHTML = `
@@ -45,7 +47,7 @@ function addContent(sectionIndex) {
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
         <label for="fontFamily${sectionIndex}">Font Family:</label>
-        <select id="fontFamily${sectionIndex}" name="fontFamily${sectionIndex}">
+        <select id="fontFamily${sectionIndex}${contentContainer.children.length + 1}" name="fontFamily${sectionIndex}">
             <option value="Arial, sans-serif">Arial, sans-serif</option>
         </select>
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
@@ -53,8 +55,6 @@ function addContent(sectionIndex) {
     contentContainer.appendChild(contentDiv);
     updatePreview();
 }
-
-// Rest of the code remains the same...
 
 function adjustImageSize(button, direction) {
     const contentDiv = button.parentNode;
@@ -109,7 +109,7 @@ function updatePreview() {
             const contentTitle = contentItem.querySelector('input[type="text"]').value;
             const contentDescription = contentItem.querySelector('textarea').value;
             const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}`).value;
+            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`).value;
             htmlContent += `
                 <div class="content" style="font-family: ${contentFont};">
                     <h3>${contentTitle}</h3>
@@ -132,7 +132,6 @@ function updatePreview() {
 }
 
 function copyCode() {
-    // Copy HTML code functionality
     const title = document.getElementById('title').value;
     let htmlContent = `
         <!DOCTYPE html>
@@ -161,7 +160,7 @@ function copyCode() {
             const contentTitle = contentItem.querySelector('input[type="text"]').value;
             const contentDescription = contentItem.querySelector('textarea').value;
             const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}`).value;
+            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`).value;
             htmlContent += `
                 <div class="content" style="font-family: ${contentFont};">
                     <h3>${contentTitle}</h3>
@@ -189,6 +188,3 @@ function copyCode() {
 
 document.getElementById('title').addEventListener('input', updatePreview);
 document.getElementById('sectionsContainer').addEventListener('input', updatePreview);
-
-// Make content items resizable
-$('#sectionsContainer').on('input', '.resizable', updatePreview);
