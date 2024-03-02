@@ -18,12 +18,16 @@ async function fetchFontOptions() {
 
 // Function to populate font select dropdowns
 function populateFontSelects() {
-    const fontSelects = document.querySelectorAll('[id^="sectionFont"], [id^="fontFamily"]');
+    const fontSelects = document.querySelectorAll('[id^="sectionFont"], [id^="fontFamily"], [id^="contentFont"]');
     fontSelects.forEach(select => {
+        // Clear existing options
+        select.innerHTML = "";
+        // Populate options
         fontOptions.forEach(option => {
             const fontOption = document.createElement('option');
-            fontOption.value = option.trim();
-            fontOption.textContent = option.trim();
+            const trimmedOption = option.trim();
+            fontOption.value = trimmedOption; // Set value attribute
+            fontOption.textContent = trimmedOption; // Set display text
             select.appendChild(fontOption);
         });
     });
