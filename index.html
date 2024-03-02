@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HTML Generator</title>
+    <title>Complex HTML Generator</title>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <style>
         /* Some basic styling for better appearance */
@@ -64,7 +64,7 @@
     </style>
 </head>
 <body>
-    <h1>HTML Generator</h1>
+    <h1>Complex HTML Generator</h1>
     <form id="htmlForm">
         <label for="title">Title of HTML document:</label>
         <input type="text" id="title" name="title" required>
@@ -427,7 +427,6 @@
                 <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
                 <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
                 <label for="fontFamily${sectionCount}">Font Family:</label>
-                <select id="fontFamily${sectionCount}" name="fontFamily${sectionCount}">
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
                     <option value="Times New Roman, serif">Times New Roman, serif</option>
                     <option value="Arial, sans-serif">Arial, sans-serif</option>
@@ -698,6 +697,9 @@
 
         document.getElementById('title').addEventListener('input', updatePreview);
         document.getElementById('sectionsContainer').addEventListener('input', updatePreview);
+
+        // Make content items resizable
+        $('.resizable').resizable();
     </script>
 </body>
 </html>
