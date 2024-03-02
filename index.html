@@ -50,7 +50,7 @@
         }
         iframe {
             width: 100%;
-            height: auto;
+            height: 100%;
         }
         .image-container {
             margin-bottom: 10px;
@@ -258,21 +258,8 @@
                 <input type="text" placeholder="Content Title">
                 <textarea rows="4" placeholder="Content Description"></textarea>
                 <input type="text" placeholder="Image URL (optional)">
-                <label for="imageSize${sectionCount}">Image Size:</label>
-                <select id="imageSize${sectionCount}" name="imageSize${sectionCount}">
-                    <option value="auto">Auto</option>
-                    <option value="100%">100%</option>
-                    <option value="85%">85%</option>
-                    <option value="75%">75%</option>
-                    <option value="65%">65%</option>
-                    <option value="60%">60%</option>
-                    <option value="55%">55%</option>
-                    <option value="50%">50%</option>
-                    <option value="45%">45%</option>
-                    <option value="40%">40%</option>
-                    <option value="35%">35%</option>
-                    <option value="30%">30%</option>
-                    <option value="25%">25%</option>
+                <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '+')">+</button>
+                <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
                 </select>
                 <label for="fontFamily${sectionCount}">Font Family:</label>
                 <select id="fontFamily${sectionCount}" name="fontFamily${sectionCount}">
@@ -416,6 +403,19 @@
                 <button type="button" onclick="deleteContent(this)">Delete Content</button>
             `;
             contentContainer.appendChild(contentDiv);
+            updatePreview();
+        }
+
+        function adjustImageSize(button, direction) {
+            const selectElement = button.parentNode.querySelector(`select`);
+            const currentValue = parseFloat(selectElement.value.replace('%', ''));
+            let newValue;
+            if (direction === '+') {
+                newValue = Math.min(currentValue + 5, 100); // Increase by 5% with a maximum of 100%
+            } else if (direction === '-') {
+                newValue = Math.max(currentValue - 5, 0); // Decrease by 5% with a minimum of 0%
+            }
+            selectElement.value = `${newValue}%`;
             updatePreview();
         }
 
