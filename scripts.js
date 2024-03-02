@@ -107,7 +107,7 @@ function updatePreview() {
             const contentTitle = contentItem.querySelector('input[type="text"]').value;
             const contentDescription = contentItem.querySelector('textarea').value;
             const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${sectionCount}`).value;
+            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}`).value;
             htmlContent += `
                 <div class="content" style="font-family: ${contentFont};">
                     <h3>${contentTitle}</h3>
@@ -159,7 +159,7 @@ function copyCode() {
             const contentTitle = contentItem.querySelector('input[type="text"]').value;
             const contentDescription = contentItem.querySelector('textarea').value;
             const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${sectionCount}`).value;
+            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}`).value;
             htmlContent += `
                 <div class="content" style="font-family: ${contentFont};">
                     <h3>${contentTitle}</h3>
