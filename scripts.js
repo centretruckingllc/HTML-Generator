@@ -67,6 +67,12 @@ function addContent(sectionIndex) {
         </select>
         <label for="contentDescFontSize${sectionIndex}_${contentContainer.children.length + 1}">Description Font Size:</label>
         <input type="number" id="contentDescFontSize${sectionIndex}_${contentContainer.children.length + 1}" name="contentDescFontSize${sectionIndex}_${contentContainer.children.length + 1}" min="8" max="400" value="14">
+        <label for="buttonName${sectionIndex}_${contentContainer.children.length + 1}">Button Name:</label>
+        <input type="text" id="buttonName${sectionIndex}_${contentContainer.children.length + 1}" name="buttonName${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="buttonColor${sectionIndex}_${contentContainer.children.length + 1}">Button Color:</label>
+        <input type="color" id="buttonColor${sectionIndex}_${contentContainer.children.length + 1}" name="buttonColor${sectionIndex}_${contentContainer.children.length + 1}">
+        <label for="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}">Button URL:</label>
+        <input type="text" id="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}" name="buttonUrl${sectionIndex}_${contentContainer.children.length + 1}">
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
     `;
     contentContainer.appendChild(contentDiv);
@@ -109,15 +115,20 @@ function updatePreview() {
             const contentTitleFontColor = contentItem.querySelector(`#contentTitleFontColor${index + 1}_${contentIndex + 1}`).value;
             const contentTitleFont = contentItem.querySelector(`#contentTitleFont${index + 1}_${contentIndex + 1}`).value;
             const contentTitleFontSize = contentItem.querySelector(`#contentTitleFontSize${index + 1}_${contentIndex + 1}`).value + 'px';
+            const contentImageUrl = contentItem.querySelector(`#contentImageUrl${index + 1}_${contentIndex + 1}`).value;
             const contentDescription = contentItem.querySelector(`#contentDescription${index + 1}_${contentIndex + 1}`).value;
             const contentDescBackground = contentItem.querySelector(`#contentDescBackground${index + 1}_${contentIndex + 1}`).value;
             const contentDescFontColor = contentItem.querySelector(`#contentDescFontColor${index + 1}_${contentIndex + 1}`).value;
             const contentDescFont = contentItem.querySelector(`#contentDescFont${index + 1}_${contentIndex + 1}`).value;
             const contentDescFontSize = contentItem.querySelector(`#contentDescFontSize${index + 1}_${contentIndex + 1}`).value + 'px';
+            const buttonName = contentItem.querySelector(`#buttonName${index + 1}_${contentIndex + 1}`).value;
+            const buttonColor = contentItem.querySelector(`#buttonColor${index + 1}_${contentIndex + 1}`).value;
+            const buttonUrl = contentItem.querySelector(`#buttonUrl${index + 1}_${contentIndex + 1}`).value;
             htmlContent += `
                 <div class="content">
                     <h3 style="background-color: ${contentTitleBackground}; color: ${contentTitleFontColor}; font-family: ${contentTitleFont}; font-size: ${contentTitleFontSize};">${contentTitle}</h3>
                     <p style="background-color: ${contentDescBackground}; color: ${contentDescFontColor}; font-family: ${contentDescFont}; font-size: ${contentDescFontSize};">${contentDescription}</p>
+                    <button style="background-color: ${buttonColor};" onclick="window.location.href='${buttonUrl}'">${buttonName}</button>
                 </div>
             `;
         });
@@ -165,11 +176,15 @@ function copyCode() {
             const contentTitleFontColor = contentItem.querySelector(`#contentTitleFontColor${index + 1}_${contentIndex + 1}`).value;
             const contentTitleFont = contentItem.querySelector(`#contentTitleFont${index + 1}_${contentIndex + 1}`).value;
             const contentTitleFontSize = contentItem.querySelector(`#contentTitleFontSize${index + 1}_${contentIndex + 1}`).value + 'px';
+            const contentImageUrl = contentItem.querySelector(`#contentImageUrl${index + 1}_${contentIndex + 1}`).value;
             const contentDescription = contentItem.querySelector(`#contentDescription${index + 1}_${contentIndex + 1}`).value;
             const contentDescBackground = contentItem.querySelector(`#contentDescBackground${index + 1}_${contentIndex + 1}`).value;
             const contentDescFontColor = contentItem.querySelector(`#contentDescFontColor${index + 1}_${contentIndex + 1}`).value;
             const contentDescFont = contentItem.querySelector(`#contentDescFont${index + 1}_${contentIndex + 1}`).value;
             const contentDescFontSize = contentItem.querySelector(`#contentDescFontSize${index + 1}_${contentIndex + 1}`).value + 'px';
+            const buttonName = contentItem.querySelector(`#buttonName${index + 1}_${contentIndex + 1}`).value;
+            const buttonColor = contentItem.querySelector(`#buttonColor${index + 1}_${contentIndex + 1}`).value;
+            const buttonUrl = contentItem.querySelector(`#buttonUrl${index + 1}_${contentIndex + 1}`).value;
             htmlContent += `
                 <div class="content">
                     <h3 style="background-color: ${contentTitleBackground}; color: ${contentTitleFontColor}; font-family: ${contentTitleFont}; font-size: ${contentTitleFontSize};">${contentTitle}</h3>
