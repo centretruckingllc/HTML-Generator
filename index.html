@@ -453,7 +453,7 @@
                     const contentTitle = contentItem.querySelector('input[type="text"]').value;
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-                    const contentBackground = contentItem.querySelector(`#imageSize${sectionCount}`).value;
+                    const contentBackground = contentItem.querySelector(`#imageSize${index + 1}`).value;
                     const contentFont = contentItem.querySelector(`#fontFamily${sectionCount}`).value;
                     htmlContent += `
                         <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont};">
@@ -505,7 +505,7 @@
                     const contentTitle = contentItem.querySelector('input[type="text"]').value;
                     const contentDescription = contentItem.querySelector('textarea').value;
                     const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-                    const contentBackground = contentItem.querySelector(`#imageSize${sectionCount}`).value;
+                    const contentBackground = contentItem.querySelector(`#imageSize${index + 1}`).value;
                     const contentFont = contentItem.querySelector(`#fontFamily${sectionCount}`).value;
                     htmlContent += `
                         <div class="content" style="background-color: ${contentBackground}; font-family: ${contentFont};">
