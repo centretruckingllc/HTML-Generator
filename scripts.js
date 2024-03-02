@@ -15,7 +15,7 @@ function addSection() {
         <input type="color" id="sectionFontColor${sectionCount}" name="sectionFontColor${sectionCount}">
         <label for="sectionFont${sectionCount}">Font Family:</label>
         <select id="sectionFont${sectionCount}" name="sectionFont${sectionCount}">
-            <option value="Arial, sans-serif">Arial, sans-serif</option>
+            <!-- Font options will be loaded dynamically from font.txt -->
         </select>
         <label for="sectionFontSize${sectionCount}">Font Size:</label>
         <input type="number" id="sectionFontSize${sectionCount}" name="sectionFontSize${sectionCount}" min="8" max="400" value="14">
@@ -48,7 +48,7 @@ function addContent(sectionIndex) {
         <button type="button" class="adjust-image-size" onclick="adjustImageSize(this, '-')">-</button>
         <label for="fontFamily${sectionIndex}">Font Family:</label>
         <select id="fontFamily${sectionIndex}${contentContainer.children.length + 1}" name="fontFamily${sectionIndex}">
-            <option value="Arial, sans-serif">Arial, sans-serif</option>
+            <!-- Font options will be loaded dynamically from font.txt -->
         </select>
         <button type="button" onclick="deleteContent(this)">Delete Content</button>
     `;
@@ -97,9 +97,25 @@ function updatePreview() {
         const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
         const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
         const sectionFontColor = section.querySelector(`#sectionFontColor${index + 1}`).value;
-        const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
         const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
         const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
+        const sectionFontSelect = section.querySelector(`#sectionFont${index + 1}`);
+
+        // Read font options from file
+        fetch('font.txt')
+            .then(response => response.text())
+            .then(fonts => {
+                const fontOptions = fonts.split('\n').map(font => font.trim());
+                fontOptions.forEach(font => {
+                    const option = document.createElement('option');
+                    option.value = font;
+                    option.textContent = font;
+                    sectionFontSelect.appendChild(option);
+                });
+            });
+
+        const sectionFont = sectionFontSelect.value;
+
         htmlContent += `
             <section style="background-color: ${sectionBackground}; color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
                 <h2>${sectionTitle}</h2>
@@ -109,7 +125,23 @@ function updatePreview() {
             const contentTitle = contentItem.querySelector('input[type="text"]').value;
             const contentDescription = contentItem.querySelector('textarea').value;
             const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`).value;
+            const contentFontSelect = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`);
+
+            // Read font options from file
+            fetch('font.txt')
+                .then(response => response.text())
+                .then(fonts => {
+                    const fontOptions = fonts.split('\n').map(font => font.trim());
+                    fontOptions.forEach(font => {
+                        const option = document.createElement('option');
+                        option.value = font;
+                        option.textContent = font;
+                        contentFontSelect.appendChild(option);
+                    });
+                });
+
+            const contentFont = contentFontSelect.value;
+
             htmlContent += `
                 <div class="content" style="font-family: ${contentFont};">
                     <h3>${contentTitle}</h3>
@@ -148,9 +180,25 @@ function copyCode() {
         const sectionTitle = section.querySelector(`#sectionTitle${index + 1}`).value;
         const sectionBackground = section.querySelector(`#sectionBackground${index + 1}`).value;
         const sectionFontColor = section.querySelector(`#sectionFontColor${index + 1}`).value;
-        const sectionFont = section.querySelector(`#sectionFont${index + 1}`).value;
         const sectionFontSize = section.querySelector(`#sectionFontSize${index + 1}`).value + 'px';
         const sectionMargin = section.querySelector(`#sectionMargin${index + 1}`).value + 'px';
+        const sectionFontSelect = section.querySelector(`#sectionFont${index + 1}`);
+
+        // Read font options from file
+        fetch('font.txt')
+            .then(response => response.text())
+            .then(fonts => {
+                const fontOptions = fonts.split('\n').map(font => font.trim());
+                fontOptions.forEach(font => {
+                    const option = document.createElement('option');
+                    option.value = font;
+                    option.textContent = font;
+                    sectionFontSelect.appendChild(option);
+                });
+            });
+
+        const sectionFont = sectionFontSelect.value;
+
         htmlContent += `
             <section style="background-color: ${sectionBackground}; color: ${sectionFontColor}; font-family: ${sectionFont}; font-size: ${sectionFontSize}; margin: ${sectionMargin};">
                 <h2>${sectionTitle}</h2>
@@ -160,7 +208,23 @@ function copyCode() {
             const contentTitle = contentItem.querySelector('input[type="text"]').value;
             const contentDescription = contentItem.querySelector('textarea').value;
             const imageURL = contentItem.querySelector('input[type="text"][placeholder="Image URL (optional)"]').value;
-            const contentFont = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`).value;
+            const contentFontSelect = contentItem.querySelector(`#fontFamily${index + 1}${contentIndex + 1}`);
+
+            // Read font options from file
+            fetch('font.txt')
+                .then(response => response.text())
+                .then(fonts => {
+                    const fontOptions = fonts.split('\n').map(font => font.trim());
+                    fontOptions.forEach(font => {
+                        const option = document.createElement('option');
+                        option.value = font;
+                        option.textContent = font;
+                        contentFontSelect.appendChild(option);
+                    });
+                });
+
+            const contentFont = contentFontSelect.value;
+
             htmlContent += `
                 <div class="content" style="font-family: ${contentFont};">
                     <h3>${contentTitle}</h3>
