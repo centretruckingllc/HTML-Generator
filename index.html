@@ -408,17 +408,22 @@
         }
 
         function adjustImageSize(button, direction) {
-            const selectElement = button.parentNode.querySelector('select');
-            const currentValue = parseFloat(selectElement.value.replace('%', ''));
-            let newValue;
-            if (direction === '+') {
-                newValue = Math.min(currentValue + 5, 100); // Increase by 5% with a maximum of 100%
-            } else if (direction === '-') {
-                newValue = Math.max(currentValue - 5, 0); // Decrease by 5% with a minimum of 0%
+            const contentDiv = button.parentNode;
+            const imageElement = contentDiv.querySelector('img');
+            if (imageElement) {
+                let currentWidth = imageElement.style.width;
+                if (!currentWidth) {
+                    currentWidth = '100%'; // Default to 100% if width is not set
+                }
+                let newValue;
+                if (direction === '+') {
+                    newValue = Math.min(parseInt(currentWidth) + 5, 100); // Increase by 5% with a maximum of 100%
+                } else if (direction === '-') {
+                    newValue = Math.max(parseInt(currentWidth) - 5, 5); // Decrease by 5% with a minimum of 5%
+                }
+                imageElement.style.width = `${newValue}%`;
+                updatePreview();
             }
-            selectElement.value = `${newValue}%`;
-            updatePreview();
-        }
 
         function deleteContent(button) {
             button.parentNode.remove();
