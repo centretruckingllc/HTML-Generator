@@ -189,4 +189,4 @@ document.getElementById('title').addEventListener('input', updatePreview);
 document.getElementById('sectionsContainer').addEventListener('input', updatePreview);
 
 // Make content items resizable
-$('.resizable').resizable();
+$('#sectionsContainer').on('input', '.resizable', updatePreview);
