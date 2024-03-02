@@ -877,7 +877,12 @@
                 </body>
                 </html>
             `;
+            document.getElementById('copyCode').addEventListener('click', function() {
+            const livePreview = document.getElementById('livePreview');
+            const livePreviewDoc = livePreview.contentDocument || livePreview.contentWindow.document;
+            const htmlContent = livePreviewDoc.documentElement.outerHTML;
             const generatedHtml = document.createElement('textarea');
+                
             generatedHtml.value = htmlContent;
             document.body.appendChild(generatedHtml);
             generatedHtml.select();
